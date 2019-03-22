@@ -28,7 +28,7 @@ let matInscriptas = [
 
 
 /* FUNCIONALIDADES */
-const horarioGen = [
+let horarioGen = [
     //lunes 0 
     {},
     //martes 1
@@ -44,7 +44,7 @@ const horarioGen = [
 ];
 
 function addSeccion(seccion, horTemp){
-    if(seccion){
+    if(seccion && canAddSeccion(seccion, horTemp)){
         for(let d = 1; d <= 6; d++){
             //Cuando hay clases ese dia => Copiamos
             if(Object.keys(seccion[d]).length > 0){
@@ -64,7 +64,7 @@ function canAddSeccion(seccion, horTemp){
                 for(let i = 7; i <=21; i++){
                     if(seccion[d][i]){
                         //Hay algo a esa hora => chequemos en horario tmp
-                        if(horarioGen[d-1][i]){
+                        if(horTemp[d-1][i]){
                             //Chocamos
                             console.log("Chocamos dia: y hora: ", d, i);
                             console.log(seccion , horTemp);
@@ -85,7 +85,11 @@ function publicar(hor){
 }
 
 function horario(idMat, idSeccion, horarioT){
-    const horarioTemp = JSON.parse(JSON.stringify(horarioT));
+    //console.log("ahor", horarioT);
+    console.log("String", JSON.stringify(horarioT));
+    //JSON.parse(JSON.stringify(horarioT));
+    var horarioTemp = JSON.parse(JSON.stringify(horarioT));
+    //console.log("dhor", horarioTemp);
     if(matInscriptas[idMat]){
         console.log("Mat existe", idMat);
         //Si existe
@@ -93,6 +97,7 @@ function horario(idMat, idSeccion, horarioT){
             if(canAddSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp)){
                 addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
                 console.log("Seccion add", idSeccion);
+                //console.log("horarioTemp", horarioTemp);
                 horario(idMat + 1, 0, horarioTemp);
             }      
             console.log("volvemos",idMat,idSeccion);     
@@ -105,6 +110,6 @@ function horario(idMat, idSeccion, horarioT){
 }
 
 function run(){
-    
+    console.log("run", horarioGen);
     horario(0,0, horarioGen);
 }
