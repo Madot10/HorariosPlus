@@ -5,3 +5,36 @@
 .wshadow{
     box-shadow: none !important;
 }
+
+.form-control#inNrc{
+    display: inline;
+	width: 75%;
+}
+
+.custom-range.time-control{
+    width: 62%;
+}
+
+#h-ini{
+    min-width: 70px;
+}
+
+#h-fin{
+    min-width: 70px;
+}
+
+.headDay{
+    text-align: left;
+}
+
+.class-day{
+    text-align: left;
+}
+
+.card-body.time{
+    /*display: block;*/
+}
+
+.check-time{
+
+}

@@ -198,12 +198,220 @@
         <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#carreraModal">Carrera</button>
         <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#materiasModal">Materias</button>
 
+        <br>
 
         <div id="materias" class="card-columns">
+            <div class="0 card">
+                <div class="card-header" style="position: relative;">
+                    Principios de Marketing <a href="#" onclick="desCheckMatList(0);"
+                        class="stretched-link text-danger"><i class="far fa-times-circle"></i></a>
+                </div>
+                <div class="card-body">
+                    <div class="seccion">
+
+                    </div>
+                    <button onclick="modalSeccion()" class="btn btn-outline-primary btn-block wshadow"><i
+                            class="fas fa-plus"></i> Sección</button>
+                </div>
+            </div>
         </div>
     </div>
 
 
+    <!-- SECCIONES MODAL -->
+    <div class="modal fade" id="seccionModal" tabindex="-1" role="dialog" aria-labelledby="seccionModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva Sección</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inNrc">NRC:</label>
+                        <input type="number" name="inNrc" id="inNrc" class="form-control">
+                    </div>
+
+                    <hr>
+                    <p>
+                        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseLunes" aria-expanded="false" aria-controls="collapseLunes">
+                            Lunes
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseLunes">
+                        <div class="card card-body time">
+                            <label>Seleccione las horas de clase:</label> <br>
+                            <label><input type="checkbox" class="check-time">  7:00 a 8:00 </label>
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 10:00 a 11:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 11:00 a 12:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 12:00 a 1:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 1:00 a 2:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 2:00 a 3:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 3:00 a 4:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 4:00 a 5:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 5:00 a 6:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 6:00 a 7:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 7:00 a 8:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                        </div>
+                    </div>
+
+                    <hr>
+                    <p>
+                        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseMartes" aria-expanded="false" aria-controls="collapseLunes">
+                            Martes
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseMartes">
+                        <div class="card card-body time">
+                            <label>Seleccione las horas de clase:</label> <br>
+                            <label><input type="checkbox" class="check-time">  7:00 a 8:00 </label>
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 10:00 a 11:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 11:00 a 12:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 12:00 a 1:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 1:00 a 2:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 2:00 a 3:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 3:00 a 4:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 4:00 a 5:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 5:00 a 6:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 6:00 a 7:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 7:00 a 8:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                        </div>
+                    </div>
+
+                    <hr>
+                    <p>
+                        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseMiercoles" aria-expanded="false" aria-controls="collapseLunes">
+                            Miércoles
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseMiercoles">
+                        <div class="card card-body time">
+                            <label>Seleccione las horas de clase:</label> <br>
+                            <label><input type="checkbox" class="check-time">  7:00 a 8:00 </label>
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 10:00 a 11:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 11:00 a 12:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 12:00 a 1:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 1:00 a 2:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 2:00 a 3:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 3:00 a 4:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 4:00 a 5:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 5:00 a 6:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 6:00 a 7:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 7:00 a 8:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                        </div>
+                    </div>
+
+                    <hr>
+                    <p>
+                        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseJueves" aria-expanded="false" aria-controls="collapseLunes">
+                            Jueves
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseJueves">
+                        <div class="card card-body time">
+                            <label>Seleccione las horas de clase:</label> <br>
+                            <label><input type="checkbox" class="check-time">  7:00 a 8:00 </label>
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 10:00 a 11:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 11:00 a 12:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 12:00 a 1:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 1:00 a 2:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 2:00 a 3:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 3:00 a 4:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 4:00 a 5:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 5:00 a 6:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 6:00 a 7:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 7:00 a 8:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                        </div>
+                    </div>
+                    <hr>
+                    <p>
+                        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseViernes" aria-expanded="false" aria-controls="collapseLunes">
+                            Viernes
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseViernes">
+                        <div class="card card-body time">
+                            <label>Seleccione las horas de clase:</label> <br>
+                            <label><input type="checkbox" class="check-time">  7:00 a 8:00 </label>
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 10:00 a 11:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 11:00 a 12:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 12:00 a 1:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 1:00 a 2:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 2:00 a 3:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 3:00 a 4:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 4:00 a 5:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 5:00 a 6:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 6:00 a 7:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 7:00 a 8:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                        </div>
+                    </div>
+                    <hr>
+                    <p>
+                        <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse"
+                            data-target="#collapseSabado" aria-expanded="false" aria-controls="collapseLunes">
+                            Sábado
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseSabado">
+                        <div class="card card-body time">
+                            <label>Seleccione las horas de clase:</label> <br>
+                            <label><input type="checkbox" class="check-time">  7:00 a 8:00 </label>
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 10:00 a 11:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 11:00 a 12:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 12:00 a 1:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 1:00 a 2:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 2:00 a 3:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 3:00 a 4:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 4:00 a 5:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 5:00 a 6:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 6:00 a 7:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 7:00 a 8:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 8:00 a 9:00 </label> 
+                            <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-block">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

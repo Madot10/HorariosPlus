@@ -1,46 +1,3 @@
-//Abre modal
-function openModal(nameModal) {
-    isOpen = 1;
-
-    /* switch (nameModal) {
-        case 'coopModal':
-            resetCoopModal();
-            break;
-
-        case 'carModal':
-           if(!sede){
-                isOpen = 0;
-                alert("¡DEBE SELECCIONAR UNA SEDE!");
-            }
-            break;
-
-        case 'matModal':
-           if(!carrera){
-                isOpen = 0;
-                alert("¡DEBE SELECCIONAR UNA CARRERA!");
-            }
-            break;
-
-        default:
-            break;
-    }
- */
-    if (isOpen) {
-        //abrir
-        document.getElementById(nameModal).style.display = "block";
-    } else {
-        document.getElementById(nameModal).style.display = "none";
-    }
-}
-
-
-function closeModal() {
-    isOpen = 0;
-    for (const modal of document.getElementsByClassName("modal")) {
-        modal.style.display = "none";
-    }
-}
-
 function GetJsonDataMaterias(tx) {
     tx = tx.replace(/\s/g, '');
     tx = tx.replace(/\n/g, '');
@@ -117,7 +74,6 @@ function carreraSelect(elem) {
 
 
     genMateriaList();
-    closeModal();
 }
 
 function genMateriaList() {
@@ -193,6 +149,11 @@ function materiaSelect(elem){
     }
 }
 
+function deleteMateriaList(id){
+    let elem = document.getElementsByClassName(id)[0];
+    elem.parentNode.removeChild(elem);
+}
+
 function addMateriaList(id){
     let data = materias[id];
     console.log("ID: ", id);
@@ -211,14 +172,16 @@ function addMateriaList(id){
                             <div class="seccion">
 
                             </div>
-                            <button onclick="console.log(this)" class="btn btn-outline-primary btn-block wshadow"><i class="fas fa-plus"></i> Sección</button>
+                            <button onclick="modalSeccion()" class="btn btn-outline-primary btn-block wshadow"><i class="fas fa-plus"></i> Sección</button>
                         </div>
                    `;
 
     main.appendChild(divC);
 }
 
-function deleteMateriaList(id){
-    let elem = document.getElementsByClassName(id)[0];
-    elem.parentNode.removeChild(elem);
+
+
+function modalSeccion(){
+    $('#seccionModal').modal('show');
+
 }
