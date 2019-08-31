@@ -167,12 +167,16 @@ input[type="checkbox"]:checked + label {
 }
 
 .actChbox{
-    background-color: var(--green);
+    background-color: var(--blue);
     color: white;
 }
 
 .divMat{
     display: flex;
+    margin-bottom: 0.5em;
+	margin-top: 0.2em;
+	align-items: baseline;
+	padding: 0.5em 0 0 0;
 }
 
 input:checked + label::before {
