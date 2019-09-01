@@ -7,8 +7,6 @@ let matInscriptas = [
             [[], {7: [0,0], 8: [0,0]}, {}, {10: [0,0], 11: [0,0]}, {15: [0,0]}, {}, {} ],
             //Seccion 2 (1)
             [[], {9: [0,1], 10: [0,1]}, {}, {9: [0,1], 10: [0,1]}, {}, {10: [0,1]}, {} ]
-            //Seccion 3 (2)
-            //[[], {8: [0,2], 9: [0,2]}, {}, {}, {}, {}, {} ]      
         ]
     },
 
@@ -50,13 +48,18 @@ let horarioGen = [
 
 function addSeccion(seccion, horTemp){
     if(seccion && canAddSeccion(seccion, horTemp)){
+        let horAux = JSON.parse(JSON.stringify(horTemp));
         for(let d = 1; d <= 6; d++){
             //Cuando hay clases ese dia => Copiamos
             if(Object.keys(seccion[d]).length > 0){
-                Object.assign(horTemp[d-1], seccion[d]);
+                //Object.assign(horTemp[d-1], seccion[d]);
+                //Hacemos copia
+                Object.assign(horAux[d-1], seccion[d]);
             }
         }
+        return horAux;
     }
+    return null;
 }
 
 
@@ -103,10 +106,10 @@ function horario(idMat, idSeccion, horarioT){
         while((idSeccion <= (matInscriptas[idMat].secciones.length - 1)) && matInscriptas[idMat].secciones[idSeccion]){
             console.log("ANTES horarioTemp", horarioTemp);
             if(canAddSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp)){
-                addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
+                //addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
                 console.log("Seccion add", idSeccion);
                 console.log("DESPUES horarioTemp", horarioTemp);
-                horario(idMat + 1, 0, horarioTemp);
+                horario(idMat + 1, 0, addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp));
             }      
             console.log("volvemos",idMat,idSeccion);     
             idSeccion += 1;
