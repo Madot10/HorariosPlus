@@ -3,10 +3,12 @@ let matInscriptas = [
     {
         "materia": "Geometría Plana y Trigonometría",
         "secciones": [
-            //Seccion1 -  datos seccion [mat, secc] - l m mi j v s
+            //Seccion1 (0)-  datos seccion [mat, secc] - l m mi j v s
             [[], {7: [0,0], 8: [0,0]}, {}, {10: [0,0], 11: [0,0]}, {15: [0,0]}, {}, {} ],
-            //Seccion 2
-            [[], {9: [0,1], 10: [0,1]}, {}, {9: [0,1], 10: [0,1]}, {}, {10: [0,1]}, {} ]    
+            //Seccion 2 (1)
+            [[], {9: [0,1], 10: [0,1]}, {}, {9: [0,1], 10: [0,1]}, {}, {10: [0,1]}, {} ]
+            //Seccion 3 (2)
+            //[[], {8: [0,2], 9: [0,2]}, {}, {}, {}, {}, {} ]      
         ]
     },
 
@@ -84,7 +86,7 @@ function canAddSeccion(seccion, horTemp){
 }
 
 function publicar(hor){
-    console.log("PUBLICACION", hor);
+    console.warn("PUBLICACION", hor);
 }
 
 function horario(idMat, idSeccion, horarioT){
@@ -93,14 +95,17 @@ function horario(idMat, idSeccion, horarioT){
     //JSON.parse(JSON.stringify(horarioT));
     var horarioTemp = JSON.parse(JSON.stringify(horarioT));
     //console.log("dhor", horarioTemp);
+
+    //Si existe materia
     if(matInscriptas[idMat]){
         console.log("Mat existe", idMat);
-        //Si existe
+        //Mientras la seccion exista y idSecc no se pase
         while((idSeccion <= (matInscriptas[idMat].secciones.length - 1)) && matInscriptas[idMat].secciones[idSeccion]){
+            console.log("ANTES horarioTemp", horarioTemp);
             if(canAddSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp)){
                 addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
                 console.log("Seccion add", idSeccion);
-                //console.log("horarioTemp", horarioTemp);
+                console.log("DESPUES horarioTemp", horarioTemp);
                 horario(idMat + 1, 0, horarioTemp);
             }      
             console.log("volvemos",idMat,idSeccion);     

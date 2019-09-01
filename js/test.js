@@ -1,3 +1,5 @@
+var carrera = "";
+
 function GetJsonDataMaterias(tx) {
     tx = tx.replace(/\s/g, '');
     tx = tx.replace(/\n/g, '');
@@ -180,7 +182,7 @@ function addMateriaList(id){
     main.appendChild(divC);
 }
 
-let marInscriptasBorrador = [];
+let matInscriptasBorrador = [];
 
 var idMatActual = null;
 
@@ -192,17 +194,32 @@ function modalSeccion(idMat){
 }
 
 function guardarSeccion(){
-  
+    if(matInscriptasBorrador[idMatActual]){
+        //Existe mat => agregar seccion
+        matInscriptasBorrador[idMatActual].secciones.push(genArrSeccion());
+    }else{
+        //Crear materia
+        let matAux = {};
+        matAux["materia"] = window[carrera][idMatActual].Asignatura;
+        //TO-DO
+        //matAux["nrc"] = 
+        //Agregar seccion
+        matAux["secciones"] = [];
+        matAux.secciones.push(genArrSeccion());
+
+        matInscriptasBorrador.push(matAux);
+    }
+    console.log("Guarda Seccion!");
 }
 
 function isMatSaved(matName){
-    marInscriptasBorrador.forEach((mat, i) =>{
+    matInscriptasBorrador.forEach((mat, i) =>{
         if(matName == mat.materia){
-            //Retornamos Arreglo => Index , materia 
-            return [i, mat]
+            //Retornamos => Index 
+            return i;
         }
     });
-    return null;
+    return false;
 }
 
 function genArrSeccion(){
@@ -211,7 +228,8 @@ function genArrSeccion(){
 
     let idayAnt = 0;
     let objDay = {};
-    let matData = marInscriptasBorrador[idMatActual];
+    let matData = matInscriptasBorrador[idMatActual];
+
     let idSeccion = 0;
         if(matData){
             idSeccion = matData.secciones.length;
@@ -219,14 +237,24 @@ function genArrSeccion(){
     Array.from(hours).forEach((check, i) =>{
         let idayActual = Math.floor(i / 15);
 
-        //Cambio de dia
-        if(idayAnt != idayActual){
+        //hay Cambio de dia o llegamos al ultimo* 
+        if((idayAnt != idayActual)){
             idayAnt = idayActual;
-            //TO-DO Cambiar a otro obj
-        }
+            
+            sec.push(objDay); //Guardamos dia
+            objDay = {}; //Cambio de dia
+        } 
+        
         //Hay clase
         if(check.checked){
             objDay[(i % 15) + 7] = [idMatActual, idSeccion]
         }
+
+        if(i == 89){
+            sec.push(objDay); //Guardamos dia
+        }
     })
+
+    console.log("Seccion gen: ", sec);
+    return sec;
 }
