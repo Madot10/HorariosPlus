@@ -161,6 +161,7 @@ function addMateriaList(id){
 
     let divC = document.createElement("div");
     divC.classList.add(id, "card");
+    divC.setAttribute("id", id);
     //divC.setAttribute("onclick", `desCheckMatList(${id});`)
     //divC.style.display = "inline-block";
 
@@ -172,16 +173,60 @@ function addMateriaList(id){
                             <div class="seccion">
 
                             </div>
-                            <button onclick="modalSeccion()" class="btn btn-outline-primary btn-block wshadow"><i class="fas fa-plus"></i> Sección</button>
+                            <button onclick="modalSeccion(${id})" class="btn btn-outline-primary btn-block wshadow"><i class="fas fa-plus"></i> Sección</button>
                         </div>
                    `;
 
     main.appendChild(divC);
 }
 
+let marInscriptasBorrador = [];
 
+var idMatActual = null;
 
-function modalSeccion(){
+function modalSeccion(idMat){
+    console.log("idMateria: ", idMat);
+    idMatActual = idMat;
+
     $('#seccionModal').modal('show');
+}
 
+function guardarSeccion(){
+  
+}
+
+function isMatSaved(matName){
+    marInscriptasBorrador.forEach((mat, i) =>{
+        if(matName == mat.materia){
+            //Retornamos Arreglo => Index , materia 
+            return [i, mat]
+        }
+    });
+    return null;
+}
+
+function genArrSeccion(){
+    let sec = [[]];
+    let hours  = document.getElementsByClassName("check-time");
+
+    let idayAnt = 0;
+    let objDay = {};
+    let matData = marInscriptasBorrador[idMatActual];
+    let idSeccion = 0;
+        if(matData){
+            idSeccion = matData.secciones.length;
+        }
+    Array.from(hours).forEach((check, i) =>{
+        let idayActual = Math.floor(i / 15);
+
+        //Cambio de dia
+        if(idayAnt != idayActual){
+            idayAnt = idayActual;
+            //TO-DO Cambiar a otro obj
+        }
+        //Hay clase
+        if(check.checked){
+            objDay[(i % 15) + 7] = [idMatActual, idSeccion]
+        }
+    })
 }
