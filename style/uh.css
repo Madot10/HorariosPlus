@@ -1,5 +1,5 @@
 .card-columns{
-   column-count: 2;
+   /*column-count: 2;*/
 }
 
 @media (min-width: 768px){
@@ -10,6 +10,7 @@
 
 .card-mat{
     display: inline-block;
+    width: 100%;
 }
 
 .wshadow{
@@ -45,6 +46,26 @@
     /*display: block;*/
 }
 
-.check-time{
+.check-time.hide{
+    width: 0;
+	height: 0;
+	position: absolute;
+}
 
+button.checker{
+    width: 2em;
+    height: 2em;
+    
+	background-color: gray;
+	color: white;
+    border: 1px solid #495057;
+
+    font-size: 20px;
+    
+    margin-left: -5px;
+	margin-top: -1px;
+}
+
+button.checker.active{
+    background-color: var(--blue);
 }

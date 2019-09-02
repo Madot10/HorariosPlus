@@ -49,11 +49,11 @@ function carreraSelect(elem) {
     content = content.toUpperCase();
 
     $('#carreraModal').modal('hide')
-    //let span;
+    let span;
     //let parentElem;
 
 
-    //span = document.getElementById("sCarrera");
+    span = document.getElementById("btn-car");
     //parentElem = span.parentElement;
 
 
@@ -67,7 +67,7 @@ function carreraSelect(elem) {
     //console.log(carrera, materias);
 
     //mostramos nombre de carrera en boton exterior
-    //span.innerHTML = content;
+    span.innerHTML = content;
 
     //limpiamos tabla de materias 
     // document.getElementsByClassName('materias')[0].innerHTML = '';
@@ -302,4 +302,23 @@ function clearModalSeccion(){
     Array.from(hours).forEach(elem =>{
         elem.checked = false;
     })
+
+    let buttons = document.getElementsByClassName("checker");
+    Array.from(buttons).forEach(elem =>{
+        elem.classList.remove("active");
+    })
+}
+
+//Checking
+function checkTime(elemBtn){
+    //console.log(elemBtn.childNodes);
+    elemBtn.classList.toggle("active");
+    if(elemBtn.childNodes[1].checked){
+        //Ya esta activado => descar
+        elemBtn.childNodes[1].checked = false;
+    }else{
+        //=> Activar
+        elemBtn.childNodes[1].checked = true;
+    }
+    
 }
