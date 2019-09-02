@@ -4,6 +4,8 @@ function inicializar(){
     document.getElementById("materias").innerHTML = '';
     matInscriptasBorrador = [];
     idMatActual = null;
+    arrColor = [];
+    i = 1;
 }
 
 function GetJsonDataMaterias(tx) {

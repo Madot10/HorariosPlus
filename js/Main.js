@@ -80,7 +80,6 @@ function addSeccion(seccion, horTemp) {
     return null;
 }
 
-
 function canAddSeccion(seccion, horTemp) {
     if (seccion) {
         //Existe'()
@@ -107,9 +106,12 @@ function canAddSeccion(seccion, horTemp) {
 }
 
 function publicar(hor) {
-    console.warn("PUBLICACION", hor);
-    document.getElementById("horarios").innerHTML += "<br>" + templateTable;
-    fillHorarioTemplate(hor);
+    if(matInscriptas.length > 0){
+        console.warn("PUBLICACION", hor);
+        document.getElementById("horarios").innerHTML += "<br>" + templateTable;
+        fillHorarioTemplate(hor);
+    }
+    
 }
 
 function horario(idMat, idSeccion, horarioT) {
@@ -141,7 +143,11 @@ function horario(idMat, idSeccion, horarioT) {
 }
 
 function run() {
-    //matInscriptas = matInscriptasBorrador.filter(Boolean);
+    matInscriptasBorrador = matInscriptas;
+    document.getElementById("horarios").innerHTML = '';
+    initColors();
+
+    matInscriptas = matInscriptasBorrador.filter(Boolean);
     //console.log("run", horarioGen);
     horario(0, 0, horarioGen);
 }
@@ -152,7 +158,9 @@ function fillHorarioTemplate(horario) {
     horario.forEach((dia, diaId) => {
         for (let hora in dia) {
             if (dia.hasOwnProperty(hora)) {
-                document.getElementsByClassName(getClassDay(diaId, hora))[indHorario].innerText = getDataCell(dia[hora][0], dia[hora][1]);
+                let cell =  document.getElementsByClassName(getClassDay(diaId, hora))[indHorario];
+                cell.innerText = getDataCell(dia[hora][0], dia[hora][1]);
+                cell.style.backgroundColor = getColorBack(dia[hora][0]); 
             }
         }
     })
@@ -185,7 +193,25 @@ function getClassDay(did, hid) {
 }
 
 function getDataCell(matId, secId){
+    //matInscriptasBorrados USAR
     let matData = matInscriptas[matId];
     return `NRC: ${matData.nrc[secId]} 
                 ${matData.materia}`;
+}
+
+//TO-DO inicializar
+let arrColor = [];
+let i = 1;
+function initColors(){
+    arrColor = [];
+    i = 1;
+}
+
+function getColorBack(matId){
+    if(!arrColor[matId]){
+        //mat NO tiene color asig
+        arrColor[matId] = `var(--c${i})`;
+        i++; 
+    }
+    return arrColor[matId];
 }
