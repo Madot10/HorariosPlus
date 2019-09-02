@@ -2,6 +2,8 @@ let matInscriptas = [
     //0 
     {
         "materia": "Geometría Plana y Trigonometría",
+        //Index = seccion
+        "nrc": [],
         "secciones": [
             //Seccion1 (0)-  datos seccion [mat, secc] - l m mi j v s
             [[], {7: [0,0], 8: [0,0]}, {}, {10: [0,0], 11: [0,0]}, {15: [0,0]}, {}, {} ],

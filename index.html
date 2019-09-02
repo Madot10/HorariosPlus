@@ -207,9 +207,12 @@
                         class="stretched-link text-danger"><i class="far fa-times-circle"></i></a>
                 </div>
                 <div class="card-body">
-                    <div class="seccion">
-
-                    </div>
+                    <ul class="list-group">
+                        <div class="seccion" id="0-mat">
+                                <button type="button" class="list-group-item list-group-item-action">NRC: 45545645 <i class="fas fa-times-circle text-danger"></i></button>
+                        </div>
+                    </ul>
+                    <br>
                     <button onclick="modalSeccion(0)" class="btn btn-outline-primary btn-block wshadow"><i
                             class="fas fa-plus"></i> Sección</button>
                 </div>
@@ -400,14 +403,9 @@
                             <label><input type="checkbox" class="check-time"> 9:00 a 10:00 </label> 
                         </div>
                     </div>
-
-
-
-
-
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-block">Guardar</button>
+                    <button type="button" class="btn btn-success btn-block" onclick="guardarSeccion()">Guardar</button>
                 </div>
             </div>
         </div>

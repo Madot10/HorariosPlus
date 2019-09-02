@@ -162,8 +162,8 @@ function addMateriaList(id){
     let main = document.getElementById("materias");
 
     let divC = document.createElement("div");
-    divC.classList.add(id, "card");
-    divC.setAttribute("id", id);
+    divC.classList.add(id, "card", "card-mat");
+    //divC.setAttribute("id", `${id}-mat`);
     //divC.setAttribute("onclick", `desCheckMatList(${id});`)
     //divC.style.display = "inline-block";
 
@@ -172,7 +172,7 @@ function addMateriaList(id){
                             ${data.Asignatura} <a href="#"  onclick="desCheckMatList(${id});" class="stretched-link text-danger" ><i class="far fa-times-circle"></i></a>
                         </div>
                         <div class="card-body">
-                            <div class="seccion">
+                            <div class="seccion" id="${id}-mat">
 
                             </div>
                             <button onclick="modalSeccion(${id})" class="btn btn-outline-primary btn-block wshadow"><i class="fas fa-plus"></i> Sección</button>
@@ -194,22 +194,35 @@ function modalSeccion(idMat){
 }
 
 function guardarSeccion(){
+    let codNRC = document.getElementById("inNrc").value;
     if(matInscriptasBorrador[idMatActual]){
         //Existe mat => agregar seccion
+        matInscriptasBorrador[idMatActual].nrc.push(codNRC);
         matInscriptasBorrador[idMatActual].secciones.push(genArrSeccion());
     }else{
+        console.warn("Create materia ", idMatActual, matInscriptasBorrador[idMatActual]);
         //Crear materia
         let matAux = {};
         matAux["materia"] = window[carrera][idMatActual].Asignatura;
-        //TO-DO
-        //matAux["nrc"] = 
+        matAux["nrc"] = [];
+        matAux.nrc.push(codNRC);
         //Agregar seccion
         matAux["secciones"] = [];
         matAux.secciones.push(genArrSeccion());
 
-        matInscriptasBorrador.push(matAux);
+        matInscriptasBorrador[idMatActual] = matAux;
     }
+
+    insertSecCard(idMatActual, codNRC);
+    $('#seccionModal').modal('hide');
     console.log("Guarda Seccion!");
+}
+
+function insertSecCard(idMat, nrc){
+    let divMain = document.getElementById(`${idMat}-mat`);
+    divMain.innerHTML += `   <button id="${idMat}-${nrc}" onclick="deleteSeccion(${idMat}, ${nrc})" type="button" class="list-group-item list-group-item-action">
+                                NRC: ${nrc} <i class="fas fa-times-circle text-danger"></i>
+                            </button>`;
 }
 
 function isMatSaved(matName){
@@ -250,6 +263,7 @@ function genArrSeccion(){
             objDay[(i % 15) + 7] = [idMatActual, idSeccion]
         }
 
+        //Ultimo guardamos
         if(i == 89){
             sec.push(objDay); //Guardamos dia
         }
@@ -257,4 +271,19 @@ function genArrSeccion(){
 
     console.log("Seccion gen: ", sec);
     return sec;
+}
+
+function deleteSeccion(idMat, nrc){
+    let idSec =  matInscriptasBorrador[idMat].nrc.indexOf(`${nrc}`);
+    
+    //Eliminar seccion
+    matInscriptasBorrador[idMat].secciones.splice(idSec,1);
+    //Eliminar NRC de registro
+    matInscriptasBorrador[idMat].nrc.splice(idSec,1);
+
+    //Delete html card
+    console.log(` Deleting ${idMat}-${nrc}`);
+    let elem = document.getElementById(`${idMat}-${nrc}`);
+    elem.parentNode.removeChild(elem);
+    
 }
