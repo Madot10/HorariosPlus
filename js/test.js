@@ -187,6 +187,7 @@ let matInscriptasBorrador = [];
 var idMatActual = null;
 
 function modalSeccion(idMat){
+    clearModalSeccion();
     console.log("idMateria: ", idMat);
     idMatActual = idMat;
 
@@ -195,27 +196,32 @@ function modalSeccion(idMat){
 
 function guardarSeccion(){
     let codNRC = document.getElementById("inNrc").value;
-    if(matInscriptasBorrador[idMatActual]){
-        //Existe mat => agregar seccion
-        matInscriptasBorrador[idMatActual].nrc.push(codNRC);
-        matInscriptasBorrador[idMatActual].secciones.push(genArrSeccion());
+    if(codNRC != ""){
+        if(matInscriptasBorrador[idMatActual]){
+            //Existe mat => agregar seccion
+            matInscriptasBorrador[idMatActual].nrc.push(codNRC);
+            matInscriptasBorrador[idMatActual].secciones.push(genArrSeccion());
+        }else{
+            console.warn("Create materia ", idMatActual, matInscriptasBorrador[idMatActual]);
+            //Crear materia
+            let matAux = {};
+            matAux["materia"] = window[carrera][idMatActual].Asignatura;
+            matAux["nrc"] = [];
+            matAux.nrc.push(codNRC);
+            //Agregar seccion
+            matAux["secciones"] = [];
+            matAux.secciones.push(genArrSeccion());
+    
+            matInscriptasBorrador[idMatActual] = matAux;
+        }
+    
+        insertSecCard(idMatActual, codNRC);
+        $('#seccionModal').modal('hide');
+        console.log("Guarda Seccion!");
     }else{
-        console.warn("Create materia ", idMatActual, matInscriptasBorrador[idMatActual]);
-        //Crear materia
-        let matAux = {};
-        matAux["materia"] = window[carrera][idMatActual].Asignatura;
-        matAux["nrc"] = [];
-        matAux.nrc.push(codNRC);
-        //Agregar seccion
-        matAux["secciones"] = [];
-        matAux.secciones.push(genArrSeccion());
-
-        matInscriptasBorrador[idMatActual] = matAux;
+        alert("Debe introducir un NRC!");
     }
-
-    insertSecCard(idMatActual, codNRC);
-    $('#seccionModal').modal('hide');
-    console.log("Guarda Seccion!");
+    
 }
 
 function insertSecCard(idMat, nrc){
@@ -282,8 +288,18 @@ function deleteSeccion(idMat, nrc){
     matInscriptasBorrador[idMat].nrc.splice(idSec,1);
 
     //Delete html card
-    console.log(` Deleting ${idMat}-${nrc}`);
+    //console.log(` Deleting ${idMat}-${nrc}`);
     let elem = document.getElementById(`${idMat}-${nrc}`);
     elem.parentNode.removeChild(elem);
     
+}
+
+function clearModalSeccion(){
+    //console.warn("CLEAN");
+    document.getElementById("inNrc").value = "";
+
+    let hours  = document.getElementsByClassName("check-time");
+    Array.from(hours).forEach(elem =>{
+        elem.checked = false;
+    })
 }
