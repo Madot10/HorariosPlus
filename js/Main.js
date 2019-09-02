@@ -123,6 +123,7 @@ function horario(idMat, idSeccion, horarioT){
 }
 
 function run(){
-    console.log("run", horarioGen);
+    matInscriptas = matInscriptasBorrador.filter(Boolean);
+    //console.log("run", horarioGen);
     horario(0,0, horarioGen);
 }
