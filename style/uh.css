@@ -1,71 +1,135 @@
-.card-columns{
-   /*column-count: 2;*/
+.card-columns {
+    /*column-count: 2;*/
 }
 
-@media (min-width: 768px){
-    .card-columns{
+@media (min-width: 768px) {
+    .card-columns {
         column-count: 3;
-     }
+    }
 }
 
-.card-mat{
+.card-mat {
     display: inline-block;
     width: 100%;
 }
 
-.wshadow{
+.wshadow {
     box-shadow: none !important;
 }
 
-.form-control#inNrc{
+.form-control#inNrc {
     display: inline;
-	width: 75%;
+    width: 75%;
 }
 
-.custom-range.time-control{
+.custom-range.time-control {
     width: 62%;
 }
 
-#h-ini{
+#h-ini {
     min-width: 70px;
 }
 
-#h-fin{
+#h-fin {
     min-width: 70px;
 }
 
-.headDay{
+.headDay {
     text-align: left;
 }
 
-.class-day{
+.class-day {
     text-align: left;
 }
 
-.card-body.time{
+.card-body.time {
     /*display: block;*/
 }
 
-.check-time.hide{
+.check-time.hide {
     width: 0;
-	height: 0;
-	position: absolute;
+    height: 0;
+    position: absolute;
 }
 
-button.checker{
+button.checker {
     width: 2em;
     height: 2em;
-    
-	background-color: gray;
-	color: white;
+    background-color: gray;
+    color: white;
     border: 1px solid #495057;
-
     font-size: 20px;
-    
     margin-left: -5px;
-	margin-top: -1px;
+    margin-top: -1px;
 }
 
-button.checker.active{
+button.checker.active {
     background-color: var(--blue);
 }
+
+/* TABLE HORARIO*/
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.tg td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: black;
+}
+
+.tg th {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: black;
+}
+
+.tg .tg-rq9g {
+    font-weight: bold;
+    font-style: italic;
+    border-color: #333333;
+    text-align: left;
+    vertical-align: top
+}
+
+.tg .tg-sn4r {
+    font-weight: bold;
+    border-color: #333333;
+    text-align: left;
+    vertical-align: top
+}
+
+.tg .tg-de2y {
+    border-color: #333333;
+    text-align: left;
+    vertical-align: top
+}
+
+@media screen and (max-width: 767px) {
+    .tg {
+        width: 100%;
+    }
+    .tg col {
+        width: auto !important;
+    }
+    .tg-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+</style>

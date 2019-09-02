@@ -77,6 +77,7 @@
     <link rel="stylesheet" href="style/uh.css">
 
     <script src="js/Main.js"></script>
+    <script src="js/template.js"></script>
     <script src="js/test.js"></script>
 
 </head>
@@ -184,7 +185,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="matList"></div>
+                    <div id="matList">
+                        <div class="alert alert-danger" role="alert">
+                            ¡Debes seleccionar una carrera!
+                          </div>
+                    </div>
                 </div>
 
             </div>
@@ -223,6 +228,12 @@
         <hr>
 
         <button class="btn btn-primary btn-block" onclick="run()">GENERAR</button>
+
+        <hr>
+
+        <div id="horarios">
+
+        </div>
     </div>
 
     <br>
@@ -243,8 +254,10 @@
                         <label for="inNrc">NRC:</label>
                         <input type="number" name="inNrc" id="inNrc" class="form-control">
                     </div>
-
+                    
+                    <p class="text-left">Seleccione las horas de clase:</p>
                     <hr>
+
                     <div class="accordion" id="accordionExample">
                         <div class="card">
                             <div class="card-header" id="headingOne">
@@ -258,7 +271,6 @@
 
                             <div id="collapseLunes" class="collapse">
                                 <div class="card-body time">
-                                    <label>Seleccione los bloques de horas de clase:</label> <br>
                                     <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
@@ -290,7 +302,6 @@
 
                             <div id="collapseMartes" class="collapse">
                                 <div class="card-body time">
-                                    <label>Seleccione los bloques de horas de clase:</label> <br>
                                     <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
@@ -322,7 +333,6 @@
 
                             <div id="collapseMiercoles" class="collapse">
                                 <div class="card-body time">
-                                    <label>Seleccione los bloques de horas de clase:</label> <br>
                                     <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
@@ -354,7 +364,6 @@
 
                             <div id="collapseJueves" class="collapse">
                                 <div class="card-body time">
-                                    <label>Seleccione los bloques de horas de clase:</label> <br>
                                     <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
@@ -386,7 +395,6 @@
 
                             <div id="collapseViernes" class="collapse">
                                 <div class="card-body time">
-                                    <label>Seleccione los bloques de horas de clase:</label> <br>
                                     <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
@@ -418,7 +426,6 @@
 
                             <div id="collapseSabado" class="collapse">
                                 <div class="card-body time">
-                                    <label>Seleccione los bloques de horas de clase:</label> <br>
                                     <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
                                     <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>

@@ -1,5 +1,11 @@
 var carrera = "";
 
+function inicializar(){
+    document.getElementById("materias").innerHTML = '';
+    matInscriptasBorrador = [];
+    idMatActual = null;
+}
+
 function GetJsonDataMaterias(tx) {
     tx = tx.replace(/\s/g, '');
     tx = tx.replace(/\n/g, '');
@@ -42,6 +48,9 @@ function desCheckMatList(id){
 }
 
 function carreraSelect(elem) {
+    //Inicializamos todo de nuevo
+    inicializar();
+
     //limpiamos texto
     let content = elem.textContent.replace(/\n/g, '');
     content = elem.textContent.replace(/[.]/g, '');
@@ -182,7 +191,7 @@ function addMateriaList(id){
     main.appendChild(divC);
 }
 
-let matInscriptasBorrador = [];
+var matInscriptasBorrador = [];
 
 var idMatActual = null;
 
