@@ -154,13 +154,13 @@ function OnClickGa(act, typeInter , lb){
   if(lb){
       //console.log('enter');
       gtag('event', act, {
-          'event_category': typeInter + "Interaccion" + isInBrowser,
+          'event_category': typeInter + "Interaccion",
           'event_label': lb
         });
   }else{
       //console.log('not enter');
       gtag('event', act, {
-          'event_category': typeInter + "Interaccion" + isInBrowser
+          'event_category': typeInter + "Interaccion"
         });
   }
   
