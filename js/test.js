@@ -101,6 +101,8 @@ function genMateriaList() {
     let semAct = null;
     //console.log("run out");
     //Reccorremos cada materia
+    insertMatPracticas();
+
     for (let i = 0; i < materias.length; i++) {
         //console.log("run");
         semI = materias[i].Semestre;
@@ -150,6 +152,28 @@ function genMateriaList() {
     }
     main.appendChild(divBtn);
     main.appendChild(divCont);
+}
+
+function insertMatPracticas(){
+    for(let i = 10; i > 0; i--){
+        let prac = {}
+        prac.Semestre = "PRACTICAS/LABORATORIOS";
+        prac.Asignatura = `PRACTICA/LABORATORIO ${i}`;
+        prac.UC = 0;
+        prac.Tax = "TA-9";
+
+        materias.unshift(prac)
+    }
+
+    for(let i = 10; i > 0; i--){
+        let prac = {}
+        prac.Semestre = "OTROS";
+        prac.Asignatura = `OTRO ${i}`;
+        prac.UC = 0;
+        prac.Tax = "TA-9";
+
+        materias.unshift(prac)
+    }
 }
 
 function materiaSelect(elem) {
@@ -350,7 +374,7 @@ function toggleUI(state) {
 }
 
 function savePDF() {
-    toggleOverflow(true);
+   
 
     let w = document.getElementById('horarios').scrollWidth;
     let h = document.getElementById('horarios').scrollHeight;
@@ -364,6 +388,7 @@ function savePDF() {
     let context = canvas.getContext('2d');
     context.scale(2,2);
 
+    toggleOverflow(true);
     html2canvas(div,{canvas: canvas, background :'#FFFFFF'})
         .then(canvita => {
             toggleOverflow(false);
