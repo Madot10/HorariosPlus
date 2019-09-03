@@ -124,12 +124,14 @@ function canAddSeccion(seccion, horTemp) {
 function publicar(hor) {
     if(matInscriptas.length > 0){
         console.warn("PUBLICACION", hor);
-        if(numHor == 1){
+        if(numHor != 1){
             //primero
-            document.getElementById("horarios").innerHTML += `<h2>Horario ${numHor}</h2>` + templateTable;
-        }else{
-            document.getElementById("horarios").innerHTML += "<br class='breaker'>" + `<h2>Horario ${numHor}</h2>` + templateTable;
+            document.getElementById("horarios").innerHTML += '<br>';
         }
+        document.getElementById("horarios").innerHTML += 
+        ` <button class="btn btn-primary btn-block btn-sm" onclick="savePDF('${numHor}-hor')">Horario ${numHor} <i class="fas fa-download"></i></button>` 
+                        + templateTable(numHor);
+        
         numHor++;
         fillHorarioTemplate(hor);
     }
@@ -165,10 +167,10 @@ function horario(idMat, idSeccion, horarioT) {
 }
 
 function run() {
-    //matInscriptasBorrador = matInscriptas;
+    matInscriptasBorrador = matInscriptas;
     document.getElementById("horarios").innerHTML = '';
-    initColors();
 
+    initColors(); 
     matInscriptas = matInscriptasBorrador.filter(Boolean);
     //console.log("run", horarioGen);
     horario(0, 0, horarioGen);

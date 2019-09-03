@@ -3,6 +3,7 @@ var numHor = 1;
 
 function inicializar() {
     document.getElementById("materias").innerHTML = '';
+    document.getElementById("horarios").innerHTML = '';
     matInscriptasBorrador = [];
     idMatActual = null;
     arrColor = [];
@@ -154,8 +155,8 @@ function genMateriaList() {
     main.appendChild(divCont);
 }
 
-function insertMatPracticas(){
-    for(let i = 10; i > 0; i--){
+function insertMatPracticas() {
+    for (let i = 10; i > 0; i--) {
         let prac = {}
         prac.Semestre = "PRACTICAS/LABORATORIOS";
         prac.Asignatura = `PRACTICA/LABORATORIO ${i}`;
@@ -165,7 +166,7 @@ function insertMatPracticas(){
         materias.unshift(prac)
     }
 
-    for(let i = 10; i > 0; i--){
+    for (let i = 10; i > 0; i--) {
         let prac = {}
         prac.Semestre = "OTROS";
         prac.Asignatura = `OTRO ${i}`;
@@ -373,54 +374,25 @@ function toggleUI(state) {
     }
 }
 
-function savePDF() {
-   
-
-    let w = document.getElementById('horarios').scrollWidth;
-    let h = document.getElementById('horarios').scrollHeight;
-    let div = document.getElementById("horarios");
-    let canvas = document.createElement('canvas');
-
-    canvas.width = w*3;
-    canvas.height = h*3;
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 800 + 'px';
-    let context = canvas.getContext('2d');
-    context.scale(2,2);
-
-    toggleOverflow(true);
-    html2canvas(div,{canvas: canvas, background :'#FFFFFF'})
-        .then(canvita => {
-            toggleOverflow(false);
-            let canvas2 = document.createElement('canvas');
-            canvas2.width = w*2;
-            canvas2.height = h*2;
-            let contx = canvas2.getContext("2d");
-            
-            contx.drawImage(canvita, 0, 680, w*2, h*2+100, 0, 0, w*2, h*2);
-
-            var link = document.createElement("a");
-                document.body.appendChild(link);
-                link.download = "horarios.png";
-                link.href = canvas2.toDataURL("image/png");
-                link.target = '_blank';
-                link.click();
-
+function savePDF(id) {
+   const doc = new jsPDF();
+   doc.autoTable({
+       html: document.getElementById(id),
+       theme: 'striped'
     });
-
-
+   doc.save('Horario ' + id + '.pdf');
 }
 
-function toggleOverflow(state){
+function toggleOverflow(state) {
     //true = visible
     let hors = document.getElementsByClassName("tg-wrap");
-    Array.from(hors).forEach(table=>{
-        if(state){
+    Array.from(hors).forEach(table => {
+        if (state) {
             table.style.overflow = "visible";
-        }else{
+        } else {
             table.style.overflow = "auto";
         }
-        
+
     })
-   
+
 }
