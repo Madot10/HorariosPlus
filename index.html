@@ -58,7 +58,7 @@
     <script src="https://madot10.github.io/UCalculadora/js/carreras/sociologia-2017.js?dev=3"
         type="text/javascript"></script>
 
-    <title>UHorarios</title>
+    <title>Horarios+</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -75,6 +75,9 @@
     <link rel="stylesheet" href="icons/css/all.min.css">
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/uh.css">
+
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/jspdf.min.js"></script>
 
     <script src="js/Main.js"></script>
     <script src="js/template.js"></script>
@@ -109,11 +112,12 @@
                     <button value="relaciones-industriales-2017" onclick="carreraSelect(this)"
                         class="btn-block btn btn-primary">
                         <i class="fas fa-user-tie"></i> Relaciones industriales</button>
-
+                    <br>
                     <p class="tFacultad">Facultad de Derecho</p>
                     <button value="derecho-2017" onclick="carreraSelect(this)" class="btn-block btn btn-primary">
                         <i class="fas fa-gavel"></i> Derecho</button>
 
+                    <br>
                     <p class="tFacultad">Facultad de Ingeniería</p>
                     <button value="ingenieria-civil-2017" onclick="carreraSelect(this)"
                         class="btn-block btn btn-primary">
@@ -128,6 +132,7 @@
                         class="btn-block btn btn-primary">
                         <i class="fas fa-cogs"></i> Ing. en Telecomunicaciones</button>
 
+                    <br>
                     <p class="tFacultad"> Facultad de Humanidades y Educación</p>
                     <button value="comunicacion-social-2017" onclick="carreraSelect(this)"
                         class="btn-block btn btn-primary">
@@ -188,7 +193,7 @@
                     <div id="matList">
                         <div class="alert alert-danger" role="alert">
                             ¡Debes seleccionar una carrera!
-                          </div>
+                        </div>
                     </div>
                 </div>
 
@@ -196,15 +201,27 @@
         </div>
     </div>
 
+    <!-- HEADER -->
+    <header class="emenu">
+        <h1>
+            Horarios+
+        </h1>
 
-    <h2>UHorarios</h2>
-    <br>
+        <div class="divider">
+            <span id="autor"> MIGUEL DE OLIM</span>
+        </div>
+        <br>
+
+    </header>
+
+
     <div class="container">
-        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#carreraModal" id="btn-car">CARRERA</button>
-        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#materiasModal">MATERIAS</button>
-
-        <hr>
-
+        <button class="btn btn-primary btn-block btn-main" data-toggle="modal" data-target="#carreraModal"
+            id="btn-car">CARRERA <i class="fas fa-angle-right"></i></button>
+        <br>
+        <button class="btn btn-primary btn-block btn-main" data-toggle="modal" data-target="#materiasModal">MATERIAS <i
+                class="fas fa-angle-right"></i></button>
+        <br>
         <div id="materias" class="card-columns">
             <!-- <div class="0 card">
                 <div class="card-header" style="position: relative;">
@@ -224,15 +241,16 @@
                 </div>
             </div> -->
         </div>
-
+        <p class="text-muted" id="ui-help">¡Añade materias!</p>
         <hr>
 
-        <button class="btn btn-primary btn-block" onclick="run()">GENERAR</button>
+        <div class="" id="btn-gen">
+            <button class="btn btn-primary btn-block btn-main" onclick="run()">GENERAR <i class="fas fa-calendar-check"></i></button>
+            <hr>
+        </div>
 
-        <hr>
 
         <div id="horarios">
-
         </div>
     </div>
 
@@ -254,7 +272,7 @@
                         <label for="inNrc">NRC:</label>
                         <input type="number" name="inNrc" id="inNrc" class="form-control">
                     </div>
-                    
+
                     <p class="text-left">Seleccione las horas de clase:</p>
                     <hr>
 
@@ -271,21 +289,36 @@
 
                             <div id="collapseLunes" class="collapse">
                                 <div class="card-body time">
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +327,8 @@
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
-                                        data-target="#collapseMartes" aria-expanded="true" aria-controls="collapseMartes">
+                                        data-target="#collapseMartes" aria-expanded="true"
+                                        aria-controls="collapseMartes">
                                         Martes <i class="fas fa-angle-down"></i>
                                     </button>
                                 </h2>
@@ -302,21 +336,36 @@
 
                             <div id="collapseMartes" class="collapse">
                                 <div class="card-body time">
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
                                 </div>
                             </div>
                         </div>
@@ -325,7 +374,8 @@
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
-                                        data-target="#collapseMiercoles" aria-expanded="true" aria-controls="collapseMiercoles">
+                                        data-target="#collapseMiercoles" aria-expanded="true"
+                                        aria-controls="collapseMiercoles">
                                         Miércoles <i class="fas fa-angle-down"></i>
                                     </button>
                                 </h2>
@@ -333,21 +383,36 @@
 
                             <div id="collapseMiercoles" class="collapse">
                                 <div class="card-body time">
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
                                 </div>
                             </div>
                         </div>
@@ -356,7 +421,8 @@
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
-                                        data-target="#collapseJueves" aria-expanded="true" aria-controls="collapseJueves">
+                                        data-target="#collapseJueves" aria-expanded="true"
+                                        aria-controls="collapseJueves">
                                         Jueves <i class="fas fa-angle-down"></i>
                                     </button>
                                 </h2>
@@ -364,21 +430,36 @@
 
                             <div id="collapseJueves" class="collapse">
                                 <div class="card-body time">
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
                                 </div>
                             </div>
                         </div>
@@ -387,7 +468,8 @@
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
-                                        data-target="#collapseViernes" aria-expanded="true" aria-controls="collapseViernes">
+                                        data-target="#collapseViernes" aria-expanded="true"
+                                        aria-controls="collapseViernes">
                                         Viernes <i class="fas fa-angle-down"></i>
                                     </button>
                                 </h2>
@@ -395,21 +477,36 @@
 
                             <div id="collapseViernes" class="collapse">
                                 <div class="card-body time">
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
                                 </div>
                             </div>
                         </div>
@@ -418,7 +515,8 @@
                             <div class="card-header" id="headingOne">
                                 <h2 class="mb-0">
                                     <button class="btn btn-link btn-block" type="button" data-toggle="collapse"
-                                        data-target="#collapseSabado" aria-expanded="true" aria-controls="collapseSabado">
+                                        data-target="#collapseSabado" aria-expanded="true"
+                                        aria-controls="collapseSabado">
                                         Sábado <i class="fas fa-angle-down"></i>
                                     </button>
                                 </h2>
@@ -426,26 +524,41 @@
 
                             <div id="collapseSabado" class="collapse">
                                 <div class="card-body time">
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox" class="check-time hide"></button><br>
-                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox" class="check-time hide"></button>
-                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox" class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 10 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 11 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 12 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 1 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 2 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 3 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 4 <input type="checkbox"
+                                            class="check-time hide"></button><br>
+                                    <button class="checker" onclick="checkTime(this)"> 5 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 6 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 7 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 8 <input type="checkbox"
+                                            class="check-time hide"></button>
+                                    <button class="checker" onclick="checkTime(this)"> 9 <input type="checkbox"
+                                            class="check-time hide"></button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success btn-block" onclick="guardarSeccion()">Guardar</button>

@@ -30,6 +30,22 @@ let matInscriptas = [
             // l m m j v s
             [[], {}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}],
         ]
+    },
+    {
+        "materia": "Identidad, Liderazgo y Compromiso II",
+        "nrc": ["4"],
+        "secciones": [
+            // l m m j v s
+            [[], { 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}],
+        ]
+    },
+  {
+        "materia": "Identidad, Liderazgo y Compromiso 3",
+        "nrc": ["5"],
+        "secciones": [
+            // l m m j v s
+            [[], { 20: [2, 0], 18: [2, 0] }, {}, {}, { 20: [2, 0], 18: [2, 0] }, {}, { 20: [2, 0], 18: [2, 0] }],
+        ]
     }
 ];
 
@@ -108,7 +124,13 @@ function canAddSeccion(seccion, horTemp) {
 function publicar(hor) {
     if(matInscriptas.length > 0){
         console.warn("PUBLICACION", hor);
-        document.getElementById("horarios").innerHTML += "<br>" + templateTable;
+        if(numHor == 1){
+            //primero
+            document.getElementById("horarios").innerHTML += `<h2>Horario ${numHor}</h2>` + templateTable;
+        }else{
+            document.getElementById("horarios").innerHTML += "<br class='breaker'>" + `<h2>Horario ${numHor}</h2>` + templateTable;
+        }
+        numHor++;
         fillHorarioTemplate(hor);
     }
     
@@ -194,7 +216,7 @@ function getClassDay(did, hid) {
 
 function getDataCell(matId, secId){
     //matInscriptasBorrados USAR
-    let matData = matInscriptas[matId];
+    let matData = matInscriptasBorrador[matId];
     return `NRC: ${matData.nrc[secId]} 
                 ${matData.materia}`;
 }
@@ -204,6 +226,7 @@ let arrColor = [];
 let i = 1;
 function initColors(){
     arrColor = [];
+    numHor = 1;
     i = 1;
 }
 

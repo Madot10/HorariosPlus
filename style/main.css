@@ -28,55 +28,6 @@ header h1{
     font-weight: 300;
 }
 
-/* DIVIDER */
-.divider{
-    width: 100%; 
-    height: 10px;
-    border-bottom: 2px solid var(--yellow); 
-    text-align: center;
-}
-
-#ucvalue{
-    font-size: 1.1em; 
-    color: var(--blue);
-    background-color: white; 
-    padding: 0 10px;
-}
-
-/* END DIVIDER */
-
-/* ICONS button.ubtn */
-.svg-inline--fa{
-    height: auto !important;
-    width: 2em !important;
-    vertical-align: middle;
-   /* float: left;*/
-}
-
-/*FELCHA ICON*/
-button.ubtn .fa-angle-right{
-    height: auto !important;
-    width: 1.1em !important;
-    vertical-align: middle;
-    float: right;
-}
-
-button.ubtn{
-    line-height: 50px;
-    text-align: left;
-
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis; 
-}
-
-
-@media only screen and (max-width: 768px){
-    button.ubtn{
-        width: 82%;
-    }
-
-}
 
 button.uc{
     border-radius: 10px;
@@ -112,67 +63,6 @@ button.uc:hover{
     background-color: #3f6a45;
 } */
 
-
-
-/* TABLAA MATERIAS*/
-.tabla{
-    width: 80%;
-	display: inline-block;
-    align-content: center;
-}
-
-.headTable{
-    border-bottom: 0.125em solid var(--green);
-    text-align: left;
-    font-weight: 400;
-
-}
-
-.headTable .head{
-	display: inline-block;
-	vertical-align: top;
-}
-
-.tabla .foot{
-    border-top: 0.125em solid var(--green);
-    margin-top: 0.2em;
-    text-align: right;
-    font-weight: 400;
-}
-
-.mat{
-    padding-left: 1em;
-    width: 55%;  
-}
-
-.tax{
-    width: 18%;
-}
-
-footer{
-    background-color: #374746;
-    color: white;
-    margin: 0;
-}
-
-footer a{
-    color: white;
-}
-
-.ublue{
-    color: var(--blue);
-}
-
-.ugreen{
-    color: var(--green);
-}
-
-.alert {
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-}
 
 
 /**************** LOAD SYSTEM NEW *****************/
@@ -232,19 +122,11 @@ footer a{
 	border-bottom: 2px solid;
 }
 
-input[type="checkbox"]{
-    /*position: absolute;
-    left: -9999px;*/
-}
-
-input[type="checkbox"]:checked + label {
-    /* awesome styles */ /* styles for an "on" indicator */
-    
-}
-
 .actChbox{
     background-color: var(--blue);
     color: white;
+    border-radius: 0 10px 10px 0;
+    padding-left: 5px !important;
 }
 
 .divMat{
@@ -255,9 +137,6 @@ input[type="checkbox"]:checked + label {
 	padding: 0.5em 0 0 0;
 }
 
-input:checked + label::before {
-    /* styles for an "on" indicator */
-}
 
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
@@ -299,3 +178,4 @@ input:checked + label::before {
 }
 
 /* END MATERIA MODAL */
+

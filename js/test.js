@@ -1,10 +1,12 @@
 var carrera = "";
+var numHor = 1;
 
-function inicializar(){
+function inicializar() {
     document.getElementById("materias").innerHTML = '';
     matInscriptasBorrador = [];
     idMatActual = null;
     arrColor = [];
+    numHor = 1;
     i = 1;
 }
 
@@ -18,7 +20,7 @@ function GetJsonDataMaterias(tx) {
 }
 
 /* MATERIA MODAL */
-function toggleActiveChbox(elem){
+function toggleActiveChbox(elem) {
     let parentElem = elem.parentElement;
     parentElem.classList.toggle("actChbox");
     materiaSelect(elem);
@@ -39,14 +41,14 @@ function toggleList(elem) {
 
 }
 
-function desCheckMatList(id){
+function desCheckMatList(id) {
     let elem = document.getElementById(id);
-    
-    if(elem.checked){
+
+    if (elem.checked) {
         elem.checked = false;
     }
 
-    toggleActiveChbox(elem);   
+    toggleActiveChbox(elem);
 }
 
 function carreraSelect(elem) {
@@ -150,24 +152,25 @@ function genMateriaList() {
     main.appendChild(divCont);
 }
 
-function materiaSelect(elem){
+function materiaSelect(elem) {
     //Verificamos si es true o false
+    toggleUI(false);
     let id = elem.getAttribute("id");
-    if(elem.checked){
+    if (elem.checked) {
         //activado
         addMateriaList(id);
-    }else{
+    } else {
         //desactivado >> eliminar
         deleteMateriaList(id);
     }
 }
 
-function deleteMateriaList(id){
+function deleteMateriaList(id) {
     let elem = document.getElementsByClassName(id)[0];
     elem.parentNode.removeChild(elem);
 }
 
-function addMateriaList(id){
+function addMateriaList(id) {
     let data = materias[id];
     console.log("ID: ", id);
     let main = document.getElementById("materias");
@@ -186,6 +189,7 @@ function addMateriaList(id){
                             <div class="seccion" id="${id}-mat">
 
                             </div>
+                            <br>
                             <button onclick="modalSeccion(${id})" class="btn btn-outline-primary btn-block wshadow"><i class="fas fa-plus"></i> Sección</button>
                         </div>
                    `;
@@ -197,7 +201,7 @@ var matInscriptasBorrador = [];
 
 var idMatActual = null;
 
-function modalSeccion(idMat){
+function modalSeccion(idMat) {
     clearModalSeccion();
     console.log("idMateria: ", idMat);
     idMatActual = idMat;
@@ -205,14 +209,14 @@ function modalSeccion(idMat){
     $('#seccionModal').modal('show');
 }
 
-function guardarSeccion(){
+function guardarSeccion() {
     let codNRC = document.getElementById("inNrc").value;
-    if(codNRC != ""){
-        if(matInscriptasBorrador[idMatActual]){
+    if (codNRC != "") {
+        if (matInscriptasBorrador[idMatActual]) {
             //Existe mat => agregar seccion
             matInscriptasBorrador[idMatActual].nrc.push(codNRC);
             matInscriptasBorrador[idMatActual].secciones.push(genArrSeccion());
-        }else{
+        } else {
             console.warn("Create materia ", idMatActual, matInscriptasBorrador[idMatActual]);
             //Crear materia
             let matAux = {};
@@ -222,29 +226,29 @@ function guardarSeccion(){
             //Agregar seccion
             matAux["secciones"] = [];
             matAux.secciones.push(genArrSeccion());
-    
+
             matInscriptasBorrador[idMatActual] = matAux;
         }
-    
+
         insertSecCard(idMatActual, codNRC);
         $('#seccionModal').modal('hide');
         console.log("Guarda Seccion!");
-    }else{
+    } else {
         alert("Debe introducir un NRC!");
     }
-    
+
 }
 
-function insertSecCard(idMat, nrc){
+function insertSecCard(idMat, nrc) {
     let divMain = document.getElementById(`${idMat}-mat`);
     divMain.innerHTML += `   <button id="${idMat}-${nrc}" onclick="deleteSeccion(${idMat}, ${nrc})" type="button" class="list-group-item list-group-item-action">
                                 NRC: ${nrc} <i class="fas fa-times-circle text-danger"></i>
                             </button>`;
 }
 
-function isMatSaved(matName){
-    matInscriptasBorrador.forEach((mat, i) =>{
-        if(matName == mat.materia){
+function isMatSaved(matName) {
+    matInscriptasBorrador.forEach((mat, i) => {
+        if (matName == mat.materia) {
             //Retornamos => Index 
             return i;
         }
@@ -252,36 +256,36 @@ function isMatSaved(matName){
     return false;
 }
 
-function genArrSeccion(){
+function genArrSeccion() {
     let sec = [[]];
-    let hours  = document.getElementsByClassName("check-time");
+    let hours = document.getElementsByClassName("check-time");
 
     let idayAnt = 0;
     let objDay = {};
     let matData = matInscriptasBorrador[idMatActual];
 
     let idSeccion = 0;
-        if(matData){
-            idSeccion = matData.secciones.length;
-        }
-    Array.from(hours).forEach((check, i) =>{
+    if (matData) {
+        idSeccion = matData.secciones.length;
+    }
+    Array.from(hours).forEach((check, i) => {
         let idayActual = Math.floor(i / 15);
 
         //hay Cambio de dia o llegamos al ultimo* 
-        if((idayAnt != idayActual)){
+        if ((idayAnt != idayActual)) {
             idayAnt = idayActual;
-            
+
             sec.push(objDay); //Guardamos dia
             objDay = {}; //Cambio de dia
-        } 
-        
+        }
+
         //Hay clase
-        if(check.checked){
+        if (check.checked) {
             objDay[(i % 15) + 7] = [idMatActual, idSeccion]
         }
 
         //Ultimo guardamos
-        if(i == 89){
+        if (i == 89) {
             sec.push(objDay); //Guardamos dia
         }
     })
@@ -290,46 +294,108 @@ function genArrSeccion(){
     return sec;
 }
 
-function deleteSeccion(idMat, nrc){
-    let idSec =  matInscriptasBorrador[idMat].nrc.indexOf(`${nrc}`);
-    
+function deleteSeccion(idMat, nrc) {
+    let idSec = matInscriptasBorrador[idMat].nrc.indexOf(`${nrc}`);
+
     //Eliminar seccion
-    matInscriptasBorrador[idMat].secciones.splice(idSec,1);
+    matInscriptasBorrador[idMat].secciones.splice(idSec, 1);
     //Eliminar NRC de registro
-    matInscriptasBorrador[idMat].nrc.splice(idSec,1);
+    matInscriptasBorrador[idMat].nrc.splice(idSec, 1);
 
     //Delete html card
     //console.log(` Deleting ${idMat}-${nrc}`);
     let elem = document.getElementById(`${idMat}-${nrc}`);
     elem.parentNode.removeChild(elem);
-    
+
 }
 
-function clearModalSeccion(){
+function clearModalSeccion() {
     //console.warn("CLEAN");
     document.getElementById("inNrc").value = "";
 
-    let hours  = document.getElementsByClassName("check-time");
-    Array.from(hours).forEach(elem =>{
+    let hours = document.getElementsByClassName("check-time");
+    Array.from(hours).forEach(elem => {
         elem.checked = false;
     })
 
     let buttons = document.getElementsByClassName("checker");
-    Array.from(buttons).forEach(elem =>{
+    Array.from(buttons).forEach(elem => {
         elem.classList.remove("active");
     })
 }
 
 //Checking
-function checkTime(elemBtn){
+function checkTime(elemBtn) {
     //console.log(elemBtn.childNodes);
     elemBtn.classList.toggle("active");
-    if(elemBtn.childNodes[1].checked){
+    if (elemBtn.childNodes[1].checked) {
         //Ya esta activado => descar
         elemBtn.childNodes[1].checked = false;
-    }else{
+    } else {
         //=> Activar
         elemBtn.childNodes[1].checked = true;
     }
-    
+
+}
+
+function toggleUI(state) {
+    if (state) {
+        //activado
+        document.getElementById("ui-help").style.display = "block";
+        //document.getElementById("btn-gen").classList.remove("hide");
+    } else {
+        document.getElementById("ui-help").style.display = "none";
+        //document.getElementById("btn-gen").classList.add("hide");
+    }
+}
+
+function savePDF() {
+    toggleOverflow(true);
+
+    let w = document.getElementById('horarios').scrollWidth;
+    let h = document.getElementById('horarios').scrollHeight;
+    let div = document.getElementById("horarios");
+    let canvas = document.createElement('canvas');
+
+    canvas.width = w*3;
+    canvas.height = h*3;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 800 + 'px';
+    let context = canvas.getContext('2d');
+    context.scale(2,2);
+
+    html2canvas(div,{canvas: canvas, background :'#FFFFFF'})
+        .then(canvita => {
+            toggleOverflow(false);
+            let canvas2 = document.createElement('canvas');
+            canvas2.width = w*2;
+            canvas2.height = h*2;
+            let contx = canvas2.getContext("2d");
+            
+            contx.drawImage(canvita, 0, 680, w*2, h*2+100, 0, 0, w*2, h*2);
+
+            var link = document.createElement("a");
+                document.body.appendChild(link);
+                link.download = "horarios.png";
+                link.href = canvas2.toDataURL("image/png");
+                link.target = '_blank';
+                link.click();
+
+    });
+
+
+}
+
+function toggleOverflow(state){
+    //true = visible
+    let hors = document.getElementsByClassName("tg-wrap");
+    Array.from(hors).forEach(table=>{
+        if(state){
+            table.style.overflow = "visible";
+        }else{
+            table.style.overflow = "auto";
+        }
+        
+    })
+   
 }

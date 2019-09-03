@@ -1,4 +1,5 @@
-let templateTable = `<div class="tg-wrap"><table class="tg">
+let templateTable = `<div class="tg-wrap">
+<table class="tg">
   <tr>
     <th class="tg-rq9g">Hora</th>
     <th class="tg-sn4r">Lunes</th>
