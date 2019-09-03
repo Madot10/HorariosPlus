@@ -65,7 +65,7 @@ function carreraSelect(elem) {
     $('#carreraModal').modal('hide')
     let span;
     //let parentElem;
-
+    OnClickGa('CarreraSelect', 'HplusInteraccion', content);
 
     span = document.getElementById("btn-car");
     //parentElem = span.parentElement;
@@ -375,6 +375,7 @@ function toggleUI(state) {
 }
 
 function savePDF(id) {
+    OnClickGa('DownloadPDF', 'HplusIntraccion', id);
    const doc = new jsPDF();
    doc.autoTable({
        html: document.getElementById(id),

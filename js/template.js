@@ -146,4 +146,22 @@ function templateTable(id){
         <td class="tg-de2y s21"></td>
       </tr>
     </table></div>`;
-} 
+};
+
+function OnClickGa(act, typeInter , lb){
+  //si existe etiqueta hacer:
+  //console.log('LB', lb)
+  if(lb){
+      //console.log('enter');
+      gtag('event', act, {
+          'event_category': typeInter + "Interaccion" + isInBrowser,
+          'event_label': lb
+        });
+  }else{
+      //console.log('not enter');
+      gtag('event', act, {
+          'event_category': typeInter + "Interaccion" + isInBrowser
+        });
+  }
+  
+}
