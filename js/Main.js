@@ -167,7 +167,7 @@ function horario(idMat, idSeccion, horarioT) {
 }
 
 function run() {
-    matInscriptasBorrador = matInscriptas;
+    //matInscriptasBorrador = matInscriptas;
     document.getElementById("horarios").innerHTML = '';
 
     initColors(); 
