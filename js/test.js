@@ -259,15 +259,15 @@ function guardarSeccion() {
         $('#seccionModal').modal('hide');
         console.log("Guarda Seccion!");
     } else {
-        alert("Debe introducir un NRC!");
+        alert("Debe introducir un NRC o Alias!");
     }
 
 }
 
 function insertSecCard(idMat, nrc) {
     let divMain = document.getElementById(`${idMat}-mat`);
-    divMain.innerHTML += `   <button id="${idMat}-${nrc}" onclick="deleteSeccion(${idMat}, ${nrc})" type="button" class="list-group-item list-group-item-action">
-                                NRC: ${nrc} <i class="fas fa-times-circle text-danger"></i>
+    divMain.innerHTML += `   <button id="${idMat}-${nrc}" onclick="deleteSeccion(${idMat}, '${nrc}')" type="button" class="list-group-item list-group-item-action">
+                                Alias: ${nrc} <i class="fas fa-times-circle text-danger"></i>
                             </button>`;
 }
 
@@ -325,7 +325,7 @@ function deleteSeccion(idMat, nrc) {
     //Eliminar seccion
     matInscriptasBorrador[idMat].secciones.splice(idSec, 1);
     //Eliminar NRC de registro
-    matInscriptasBorrador[idMat].nrc.splice(idSec, 1);
+   // matInscriptasBorrador[idMat].nrc.splice(idSec, 1);
 
     //Delete html card
     //console.log(` Deleting ${idMat}-${nrc}`);

@@ -219,7 +219,7 @@ function getClassDay(did, hid) {
 function getDataCell(matId, secId){
     //matInscriptasBorrados USAR
     let matData = matInscriptasBorrador[matId];
-    return `NRC: ${matData.nrc[secId]} 
+    return `Alias: ${matData.nrc[secId]} 
                 ${matData.materia}`;
 }
 
