@@ -173,10 +173,11 @@ function horario(idMat, idSeccion, horarioT) {
                     //aviso de combinacciones no posibles
                     document.getElementById('horarios').innerHTML = 
                     `<div class="alert alert-warning" role="alert">
-                        ¡No se encontraron combinaciones posibles!  <i class="far fa-sad-tear"></i>
+                        ¡No se encontraron combinaciones posibles!  <i class="far fa-sad-tear"></i> <br> Una materia debe estar ocasionando el problema
                     </div>`;
+                    hideSnack();
                 }
-                //hideSnack();
+                //
             }
             idSeccion += 1;
         }
@@ -189,7 +190,6 @@ function horario(idMat, idSeccion, horarioT) {
 
 function run() {
     numHor = 1;
-    //document.getElementById('btn-gen').innerHTML = `<div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span> </div>`;
     //matInscriptasBorrador = matInscriptas;
     document.getElementById("horarios").innerHTML = '';
 
