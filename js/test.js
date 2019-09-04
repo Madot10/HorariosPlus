@@ -197,7 +197,7 @@ function deleteMateriaList(id) {
 
 function addMateriaList(id) {
     let data = materias[id];
-    console.log("ID: ", id);
+    //console.log("ID: ", id);
     let main = document.getElementById("materias");
 
     let divC = document.createElement("div");
@@ -228,7 +228,7 @@ var idMatActual = null;
 
 function modalSeccion(idMat) {
     clearModalSeccion();
-    console.log("idMateria: ", idMat);
+    //console.log("idMateria: ", idMat);
     idMatActual = idMat;
 
     $('#seccionModal').modal('show');
@@ -242,7 +242,7 @@ function guardarSeccion() {
             matInscriptasBorrador[idMatActual].nrc.push(codNRC);
             matInscriptasBorrador[idMatActual].secciones.push(genArrSeccion());
         } else {
-            console.warn("Create materia ", idMatActual, matInscriptasBorrador[idMatActual]);
+            //console.warn("Create materia ", idMatActual, matInscriptasBorrador[idMatActual]);
             //Crear materia
             let matAux = {};
             matAux["materia"] = window[carrera][idMatActual].Asignatura;
@@ -257,7 +257,7 @@ function guardarSeccion() {
 
         insertSecCard(idMatActual, codNRC);
         $('#seccionModal').modal('hide');
-        console.log("Guarda Seccion!");
+        //console.log("Guarda Seccion!");
     } else {
         alert("Debe introducir un NRC o Alias!");
     }
@@ -315,7 +315,7 @@ function genArrSeccion() {
         }
     })
 
-    console.log("Seccion gen: ", sec);
+    //console.log("Seccion gen: ", sec);
     return sec;
 }
 

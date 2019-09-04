@@ -107,8 +107,8 @@ function canAddSeccion(seccion, horTemp) {
                         //Hay algo a esa hora => chequemos en horario tmp
                         if (horTemp[d - 1][i]) {
                             //Chocamos
-                            console.log("Chocamos dia: y hora: ", d, i);
-                            console.log(seccion, horTemp);
+                            //console.log("Chocamos dia: y hora: ", d, i);
+                            //console.log(seccion, horTemp);
                             return 0;
                         }
                     }
@@ -123,7 +123,7 @@ function canAddSeccion(seccion, horTemp) {
 
 function publicar(hor) {
     if(matInscriptas.length > 0){
-        console.warn("PUBLICACION", hor);
+        //console.warn("PUBLICACION", hor);
         if(numHor != 1){
             //primero
             document.getElementById("horarios").innerHTML += '<br>';
@@ -140,24 +140,24 @@ function publicar(hor) {
 
 function horario(idMat, idSeccion, horarioT) {
     //console.log("ahor", horarioT);
-    console.log("String", JSON.stringify(horarioT));
+    //console.log("String", JSON.stringify(horarioT));
     //JSON.parse(JSON.stringify(horarioT));
     var horarioTemp = JSON.parse(JSON.stringify(horarioT));
     //console.log("dhor", horarioTemp);
 
     //Si existe materia
     if (matInscriptas[idMat]) {
-        console.log("Mat existe", idMat);
+        //console.log("Mat existe", idMat);
         //Mientras la seccion exista y idSecc no se pase
         while ((idSeccion <= (matInscriptas[idMat].secciones.length - 1)) && matInscriptas[idMat].secciones[idSeccion]) {
-            console.log("ANTES horarioTemp", horarioTemp);
+            //console.log("ANTES horarioTemp", horarioTemp);
             if (canAddSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp)) {
                 //addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
-                console.log("Seccion add", idSeccion);
-                console.log("DESPUES horarioTemp", horarioTemp);
+                //console.log("Seccion add", idSeccion);
+                //console.log("DESPUES horarioTemp", horarioTemp);
                 horario(idMat + 1, 0, addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp));
             }
-            console.log("volvemos", idMat, idSeccion);
+            //console.log("volvemos", idMat, idSeccion);
             idSeccion += 1;
         }
     } else {
