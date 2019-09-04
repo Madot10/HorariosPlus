@@ -29,21 +29,26 @@ let matInscriptas = [
         "secciones": [
             // l m m j v s
             [[], {}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}],
+            [[], {}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}]
         ]
     },
+    //3
     {
         "materia": "Identidad, Liderazgo y Compromiso II",
         "nrc": ["4"],
         "secciones": [
             // l m m j v s
             [[], { 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}],
+            [[], { 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}]
         ]
     },
+    //4
   {
         "materia": "Identidad, Liderazgo y Compromiso 3",
         "nrc": ["5"],
         "secciones": [
             // l m m j v s
+            [[], { 20: [2, 0], 18: [2, 0] }, {}, {}, { 20: [2, 0], 18: [2, 0] }, {}, { 20: [2, 0], 18: [2, 0] }],
             [[], { 20: [2, 0], 18: [2, 0] }, {}, {}, { 20: [2, 0], 18: [2, 0] }, {}, { 20: [2, 0], 18: [2, 0] }],
         ]
     }
@@ -136,6 +141,7 @@ function publicar(hor) {
         numHor++;
         fillHorarioTemplate(hor);
     }
+    hideSnack();
     
 }
 
@@ -156,9 +162,10 @@ function horario(idMat, idSeccion, horarioT) {
                 //addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
                 //console.log("Seccion add", idSeccion);
                 //console.log("DESPUES horarioTemp", horarioTemp);
+                //console.log("Horario (",idMat + 1, 0);
                 horario(idMat + 1, 0, addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp));
             }
-            console.log("volvemos", idMat, idSeccion);
+            //console.log("volvemos", idMat, idSeccion);
             if(idSeccion == (matInscriptas[idMat].secciones.length-1)){
                 //llegamos a la ultima interacion
                 //Desactivar aviso "procesando"
@@ -174,6 +181,7 @@ function horario(idMat, idSeccion, horarioT) {
             idSeccion += 1;
         }
     } else {
+        //console.warn("Publicamos(",idMat,idSeccion);
         //No existe = no hay mas => publicar
         publicar(horarioTemp);
     }
@@ -181,18 +189,18 @@ function horario(idMat, idSeccion, horarioT) {
 
 function run() {
     numHor = 1;
-    //document.getElementById('btn-gen').innerHTML = `<div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span> </div> GENERAR <i class="fas fa-calendar-check"></i>`;
+    //document.getElementById('btn-gen').innerHTML = `<div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span> </div>`;
     //matInscriptasBorrador = matInscriptas;
     document.getElementById("horarios").innerHTML = '';
 
     initColors(); 
     matInscriptas = matInscriptasBorrador.filter(Boolean);
     //console.log("run", horarioGen);
-   /* msgSnack(`<div class="spinner-border spinner-border-sm text-light" role="status">
-    <span class="sr-only">Loading...</span>
-  </div> Generando!`);*/
-
-    horario(0, 0, horarioGen);
+   msgSnack(`<div class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div> Generando!`);
+    setTimeout(()=>{horario(0, 0, horarioGen);}, 250);
+    
 }
 
 function fillHorarioTemplate(horario) {
@@ -242,7 +250,6 @@ function getDataCell(matId, secId){
                 ${matData.materia}`;
 }
 
-//TO-DO inicializar
 let arrColor = [];
 let i = 1;
 function initColors(){

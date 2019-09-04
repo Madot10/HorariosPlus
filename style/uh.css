@@ -80,7 +80,8 @@ button.btn-main{
 }
 
 .card-body.time {
-    /*display: block;*/
+    display: block;
+    padding: 0.5em; 
 }
 
 .check-time.hide {
@@ -90,12 +91,12 @@ button.btn-main{
 }
 
 button.checker {
-    width: 108px;
-    height: 2em;
+    width: 112px;
+    height: 40px;
     background-color: gray;
     color: white;
     border: 1px solid #495057;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: -5px;
     margin-top: -1px;
 }
