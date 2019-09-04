@@ -158,7 +158,19 @@ function horario(idMat, idSeccion, horarioT) {
                 //console.log("DESPUES horarioTemp", horarioTemp);
                 horario(idMat + 1, 0, addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp));
             }
-            //console.log("volvemos", idMat, idSeccion);
+            console.log("volvemos", idMat, idSeccion);
+            if(idSeccion == (matInscriptas[idMat].secciones.length-1)){
+                //llegamos a la ultima interacion
+                //Desactivar aviso "procesando"
+                if(numHor == 1){
+                    //aviso de combinacciones no posibles
+                    document.getElementById('horarios').innerHTML = 
+                    `<div class="alert alert-warning" role="alert">
+                        ¡No se encontraron combinaciones posibles!  <i class="far fa-sad-tear"></i>
+                    </div>`;
+                }
+                //hideSnack();
+            }
             idSeccion += 1;
         }
     } else {
@@ -168,12 +180,18 @@ function horario(idMat, idSeccion, horarioT) {
 }
 
 function run() {
+    numHor = 1;
+    //document.getElementById('btn-gen').innerHTML = `<div class="spinner-border spinner-border-sm text-light" role="status"><span class="sr-only">Loading...</span> </div> GENERAR <i class="fas fa-calendar-check"></i>`;
     //matInscriptasBorrador = matInscriptas;
     document.getElementById("horarios").innerHTML = '';
 
     initColors(); 
     matInscriptas = matInscriptasBorrador.filter(Boolean);
     //console.log("run", horarioGen);
+   /* msgSnack(`<div class="spinner-border spinner-border-sm text-light" role="status">
+    <span class="sr-only">Loading...</span>
+  </div> Generando!`);*/
+
     horario(0, 0, horarioGen);
 }
 

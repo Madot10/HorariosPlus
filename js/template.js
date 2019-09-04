@@ -165,3 +165,22 @@ function OnClickGa(act, typeInter , lb){
   }
   
 }
+
+function msgSnack(mesg) {
+  // Get the snackbar DIV
+  let x = document.getElementById("snackbar");
+  if (x) {
+      x.innerHTML = mesg;
+      // Add the "show" class to DIV
+      x.className = "show";
+
+      // After 3 seconds, remove the show class from DIV
+     
+  }
+}
+
+function hideSnack(){
+  let x = document.getElementById("snackbar");
+  if(x)
+    x.className = x.className.replace("show", "");
+}

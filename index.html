@@ -97,6 +97,7 @@
     <link rel="stylesheet" href="icons/css/all.min.css">
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/uh.css">
+    <link rel="stylesheet" href="style/snack.css">
 
     <script src="js/html2canvas.min.js"></script>
     <script src="js/jspdf.min.js"></script>
@@ -266,8 +267,8 @@
         <p class="text-muted" id="ui-help">¡Añade materias!</p>
         <hr>
 
-        <div class="" id="btn-gen">
-            <button class="btn btn-primary btn-block btn-main" onclick="run()">GENERAR <i
+        <div>
+            <button class="btn btn-primary btn-block btn-main" onclick="run()" id="btn-gen"">GENERAR <i
                     class="fas fa-calendar-check"></i></button>
             <hr>
         </div>
@@ -276,6 +277,8 @@
         <div id="horarios">
         </div>
     </div>
+
+    <div id="snackbar"></div>
 
     <br>
 
