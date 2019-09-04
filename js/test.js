@@ -44,12 +44,18 @@ function toggleList(elem) {
 
 function desCheckMatList(id) {
     let elem = document.getElementById(id);
+    deleteMateria(id);
 
     if (elem.checked) {
         elem.checked = false;
     }
 
     toggleActiveChbox(elem);
+}
+
+function deleteMateria(idMat){
+    //matInscriptasBorrador.splice(idMat, 1);
+    matInscriptasBorrador[idMat] = null;
 }
 
 function carreraSelect(elem) {
@@ -322,15 +328,23 @@ function genArrSeccion() {
 function deleteSeccion(idMat, nrc) {
     let idSec = matInscriptasBorrador[idMat].nrc.indexOf(`${nrc}`);
 
-    //Eliminar seccion
-    matInscriptasBorrador[idMat].secciones.splice(idSec, 1);
-    //Eliminar NRC de registro
-   // matInscriptasBorrador[idMat].nrc.splice(idSec, 1);
+    //Revisamo si solo hay una seccion => Eliminar toda materia
+    if( matInscriptasBorrador[idMat].secciones.length == 1){
+        desCheckMatList(idMat);
+    }else{
+        //Eliminar seccion
+        matInscriptasBorrador[idMat].secciones.splice(idSec, 1);
+        //Eliminar NRC de registro
+        // matInscriptasBorrador[idMat].nrc.splice(idSec, 1);
 
-    //Delete html card
-    //console.log(` Deleting ${idMat}-${nrc}`);
-    let elem = document.getElementById(`${idMat}-${nrc}`);
-    elem.parentNode.removeChild(elem);
+         //Delete html card
+        //console.log(` Deleting ${idMat}-${nrc}`);
+        let elem = document.getElementById(`${idMat}-${nrc}`);
+        elem.parentNode.removeChild(elem);
+    }
+   
+
+   
 
 }
 

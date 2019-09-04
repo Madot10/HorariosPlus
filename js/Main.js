@@ -122,6 +122,7 @@ function canAddSeccion(seccion, horTemp) {
 }
 
 function publicar(hor) {
+    //console.log("publicars")
     if(matInscriptas.length > 0){
         //console.warn("PUBLICACION", hor);
         if(numHor != 1){
