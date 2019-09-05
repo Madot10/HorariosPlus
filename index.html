@@ -15,18 +15,19 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-config" content="icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="Herramienta Web generadora de horarios posibles segun la necesidad del ucabista. Miguel De Olim">
+    <meta name="description"
+        content="Herramienta Web generadora de horarios posibles segun la necesidad del ucabista. Miguel De Olim">
 
     <link rel="manifest" href="manifest.json">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-33542195-4"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'UA-33542195-4');
+        gtag('config', 'UA-33542195-4');
     </script>
 
     <script src="https://madot10.github.io/UCalculadora/js/carreras/Administración-de-Empresas-1.js?dev=3"
@@ -103,6 +104,7 @@
     <script src="js/jspdf.min.js"></script>
 
     <script src="https://unpkg.com/jspdf-autotable@3.2.4/dist/jspdf.plugin.autotable.js"></script>
+    <script src="js/save.js"></script>
     <script src="js/Main.js"></script>
     <script src="js/template.js"></script>
     <script src="js/test.js"></script>
@@ -238,6 +240,11 @@
 
 
     <div class="container">
+        <!-- <div class="btn-group btn-block" role="group" aria-label="Basic example">
+            <button type="button" class="btn  btn-primary btn-data">Cargar <i class="fas fa-file-upload"></i></button>
+            <button type="button" class="btn  btn-primary btn-data">Guardar <i class="fas fa-save"></i></button>
+        </div> -->
+
         <p class="text-muted">¡Comienza seleccionando tu carrera!</p>
         <button class="btn btn-primary btn-block btn-main" data-toggle="modal" data-target="#carreraModal"
             id="btn-car">CARRERA <i class="fas fa-angle-right"></i></button>
@@ -269,7 +276,7 @@
 
         <div>
             <button class="btn btn-primary btn-block btn-main" onclick="run()" id="btn-gen"">GENERAR <i
-                    class="fas fa-calendar-check"></i></button>
+                    class=" fas fa-calendar-check"></i></button>
             <hr>
         </div>
 

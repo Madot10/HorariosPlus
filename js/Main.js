@@ -129,7 +129,7 @@ function canAddSeccion(seccion, horTemp) {
 function publicar(hor) {
     //console.log("publicars")
     if(matInscriptas.length > 0){
-        //console.warn("PUBLICACION", hor);
+        //console.warn("PUBLICACION", numHor, hor);
         if(numHor != 1){
             //primero
             document.getElementById("horarios").innerHTML += '<br>';
@@ -166,7 +166,7 @@ function horario(idMat, idSeccion, horarioT) {
                 horario(idMat + 1, 0, addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp));
             }
             //console.log("volvemos", idMat, idSeccion);
-            if(idSeccion == (matInscriptas[idMat].secciones.length-1)){
+            if(idSeccion == (matInscriptas[idMat].secciones.length-1) && idMat == 0){
                 //llegamos a la ultima interacion
                 //Desactivar aviso "procesando"
                 if(numHor == 1){
