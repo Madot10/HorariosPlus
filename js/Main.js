@@ -135,8 +135,15 @@ function publicar(hor) {
             document.getElementById("horarios").innerHTML += '<br>';
         }
         document.getElementById("horarios").innerHTML += 
-        ` <button class="btn btn-primary btn-block btn-sm" onclick="savePDF('${numHor}-hor')">Horario ${numHor} <i class="fas fa-download"></i></button>` 
-                        + templateTable(numHor);
+        ` <h3>Horario ${numHor}</h3> 
+        <div class="btn-group btn-block " role="group" aria-label="Basic example">
+            <button class="btn btn-primary btn-sm " onclick="savePDF('${numHor}-hor')">
+                PDF <i class="fas fa-download"></i>
+            </button>
+            <button class="btn btn-primary btn-sm" onclick="saveIMG('${numHor}-hor')">
+                IMAGEN <i class="fas fa-download"></i>
+            </button>
+        </div>` + templateTable(numHor);
         
         numHor++;
         fillHorarioTemplate(hor);

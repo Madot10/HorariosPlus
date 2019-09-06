@@ -398,6 +398,23 @@ function savePDF(id) {
    doc.save('Horario ' + id + '.pdf');
 }
 
+function saveIMG(id){
+    toggleOverflow(true);
+
+    html2canvas(document.getElementById(id)) // Llamar a html2canvas y pasarle el elemento
+    .then(canvas2 => {
+        toggleOverflow(false);
+      // Cuando se resuelva la promesa traerá el canvas
+      // Crear un elemento <a>
+      let enlace = document.createElement('a');
+      enlace.download = "Horarios.png";
+      // Convertir la imagen a Base64
+      enlace.href = canvas2.toDataURL();
+      // Hacer click en él
+      enlace.click();
+    });
+}
+
 function toggleOverflow(state) {
     //true = visible
     let hors = document.getElementsByClassName("tg-wrap");
