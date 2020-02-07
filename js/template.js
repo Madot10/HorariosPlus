@@ -1,4 +1,4 @@
-function templateTable(id){
+function templateTable(id) {
     return `<div class="tg-wrap">
     <table class="tg" id="${id}-hor">
       <tr>
@@ -146,41 +146,51 @@ function templateTable(id){
         <td class="tg-de2y s21"></td>
       </tr>
     </table></div>`;
-};
+}
 
-function OnClickGa(act, typeInter , lb){
-  //si existe etiqueta hacer:
-  //console.log('LB', lb)
-  if(lb){
-      //console.log('enter');
-      gtag('event', act, {
-          'event_category': typeInter + "Interaccion",
-          'event_label': lb
+setGa(false);
+
+function OnClickGa(act, typeInter, lb) {
+    //si existe etiqueta hacer:
+    //console.log('LB', lb)
+    if (lb) {
+        //console.log('enter');
+        gtag("event", act, {
+            event_category: typeInter + "Interaccion",
+            event_label: lb,
         });
-  }else{
-      //console.log('not enter');
-      gtag('event', act, {
-          'event_category': typeInter + "Interaccion"
+    } else {
+        //console.log('not enter');
+        gtag("event", act, {
+            event_category: typeInter + "Interaccion",
         });
-  }
-  
+    }
+}
+
+function setGa(value) {
+    let a = "Set: " + value;
+    gtag("event", "ToggleGA", {
+        event_category: "DevInteraccion",
+        event_label: a,
+    });
+
+    window["ga-disable-UA-33542195-1"] = !value;
+    console.log("Establecido ga-disable como: ", value);
 }
 
 function msgSnack(mesg) {
-  // Get the snackbar DIV
-  let x = document.getElementById("snackbar");
-  if (x) {
-      x.innerHTML = mesg;
-      // Add the "show" class to DIV
-      x.className = "show";
+    // Get the snackbar DIV
+    let x = document.getElementById("snackbar");
+    if (x) {
+        x.innerHTML = mesg;
+        // Add the "show" class to DIV
+        x.className = "show";
 
-      // After 3 seconds, remove the show class from DIV
-     
-  }
+        // After 3 seconds, remove the show class from DIV
+    }
 }
 
-function hideSnack(){
-  let x = document.getElementById("snackbar");
-  if(x)
-    x.className = x.className.replace("show", "");
+function hideSnack() {
+    let x = document.getElementById("snackbar");
+    if (x) x.className = x.className.replace("show", "");
 }

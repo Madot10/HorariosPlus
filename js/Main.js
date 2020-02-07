@@ -1,61 +1,66 @@
 let matInscriptas = [
-    //0 
+    //0
     {
-        "materia": "Geometría Plana y Trigonometría",
+        materia: "Geometría Plana y Trigonometría",
         //Index = seccion
-        "nrc": ["1"],
-        "secciones": [
+        nrc: ["1", "2222"],
+        secciones: [
             //Seccion1 (0)-  datos seccion [mat, secc] - l m mi j v s
             [[], { 7: [0, 0], 8: [0, 0] }, {}, { 10: [0, 0], 11: [0, 0] }, { 15: [0, 0] }, {}, {}],
             //Seccion 2 (1)
-            [[], { 9: [0, 1], 10: [0, 1] }, {}, { 9: [0, 1], 10: [0, 1] }, {}, { 10: [0, 1] }, {}]
-        ]
+            [[], { 9: [0, 1], 10: [0, 1] }, {}, { 9: [0, 1], 10: [0, 1] }, {}, { 10: [0, 1] }, {}],
+        ],
     },
 
     //1
     {
-        "materia": "Matemática Básica",
-        "nrc": ["20","21"],
-        "secciones": [
+        materia: "Matemática Básica",
+        nrc: ["20", "21"],
+        secciones: [
             [[], { 12: [1, 0], 13: [1, 0] }, {}, {}, { 13: [1, 0], 14: [1, 0] }, {}, {}],
-            [[], {}, { 10: [1, 1], 11: [1, 1] }, {}, {}, { 9: [1, 1], 10: [1, 1] }, {}]
-        ]
+            [[], {}, { 10: [1, 1], 11: [1, 1] }, {}, {}, { 9: [1, 1], 10: [1, 1] }, {}],
+        ],
     },
 
     //2
     {
-        "materia": "Identidad, Liderazgo y Compromiso I",
-        "nrc": ["3"],
-        "secciones": [
+        materia: "Identidad, Liderazgo y Compromiso I",
+        nrc: ["3"],
+        secciones: [
             // l m m j v s
             [[], {}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}],
-            [[], {}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}]
-        ]
+        ],
     },
     //3
     {
-        "materia": "Identidad, Liderazgo y Compromiso II",
-        "nrc": ["4"],
-        "secciones": [
+        materia: "Identidad, Liderazgo y Compromiso II",
+        nrc: ["4"],
+        secciones: [
             // l m m j v s
             [[], { 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}],
-            [[], { 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}]
-        ]
+        ],
     },
     //4
-  {
-        "materia": "Identidad, Liderazgo y Compromiso 3",
-        "nrc": ["5"],
-        "secciones": [
+    {
+        materia: "Identidad, Liderazgo y Compromiso 3",
+        nrc: ["5"],
+        secciones: [
             // l m m j v s
-            [[], { 20: [2, 0], 18: [2, 0] }, {}, {}, { 20: [2, 0], 18: [2, 0] }, {}, { 20: [2, 0], 18: [2, 0] }],
-            [[], { 20: [2, 0], 18: [2, 0] }, {}, {}, { 20: [2, 0], 18: [2, 0] }, {}, { 20: [2, 0], 18: [2, 0] }],
-        ]
-    }
+            [
+                [],
+                { 20: [2, 0], 18: [2, 0] },
+                {},
+                {},
+                { 20: [2, 0], 18: [2, 0] },
+                {},
+                { 20: [2, 0], 18: [2, 0] },
+            ],
+        ],
+    },
 ];
 
 let horTest = [
-    //lunes 0 
+    //lunes 0
     { 7: [0, 0], 8: [0, 0], 12: [1, 0], 13: [1, 0] },
     //martes 1
     {},
@@ -66,12 +71,12 @@ let horTest = [
     //viernes
     {},
     //sabado
-    {}
+    {},
 ];
 
 /* FUNCIONALIDADES */
 let horarioGen = [
-    //lunes 0 
+    //lunes 0
     {},
     //martes 1
     {},
@@ -82,7 +87,7 @@ let horarioGen = [
     //viernes
     {},
     //sabado
-    {}
+    {},
 ];
 
 function addSeccion(seccion, horTemp) {
@@ -128,14 +133,14 @@ function canAddSeccion(seccion, horTemp) {
 
 function publicar(hor) {
     //console.log("publicars")
-    if(matInscriptas.length > 0){
-        //console.warn("PUBLICACION", numHor, hor);
-        if(numHor != 1){
+    if (matInscriptas.length > 0) {
+        console.warn("PUBLICACION", numHor, hor);
+        if (numHor != 1) {
             //primero
-            document.getElementById("horarios").innerHTML += '<br>';
+            document.getElementById("horarios").innerHTML += "<br>";
         }
-        document.getElementById("horarios").innerHTML += 
-        ` <h3>Horario ${numHor}</h3> 
+        document.getElementById("horarios").innerHTML +=
+            ` <h3>Horario ${numHor}</h3> 
         <div class="btn-group btn-block " role="group" aria-label="Basic example">
             <button class="btn btn-primary btn-sm " onclick="savePDF('${numHor}-hor')">
                 PDF <i class="fas fa-download"></i>
@@ -144,12 +149,11 @@ function publicar(hor) {
                 IMAGEN <i class="fas fa-download"></i>
             </button>
         </div>` + templateTable(numHor);
-        
+
         numHor++;
         fillHorarioTemplate(hor);
     }
     hideSnack();
-    
 }
 
 function horario(idMat, idSeccion, horarioT) {
@@ -163,23 +167,31 @@ function horario(idMat, idSeccion, horarioT) {
     if (matInscriptas[idMat]) {
         //console.log("Mat existe", idMat);
         //Mientras la seccion exista y idSecc no se pase
-        while ((idSeccion <= (matInscriptas[idMat].secciones.length - 1)) && matInscriptas[idMat].secciones[idSeccion]) {
+        while (
+            idSeccion < matInscriptas[idMat].secciones.length &&
+            matInscriptas[idMat].secciones[idSeccion]
+        ) {
             //console.log("ANTES horarioTemp", horarioTemp);
             if (canAddSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp)) {
                 //addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp);
                 //console.log("Seccion add", idSeccion);
                 //console.log("DESPUES horarioTemp", horarioTemp);
                 //console.log("Horario (",idMat + 1, 0);
-                horario(idMat + 1, 0, addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp));
+                horario(
+                    idMat + 1,
+                    0,
+                    addSeccion(matInscriptas[idMat].secciones[idSeccion], horarioTemp)
+                );
             }
             //console.log("volvemos", idMat, idSeccion);
-            if(idSeccion == (matInscriptas[idMat].secciones.length-1) && idMat == 0){
+            if (idSeccion == matInscriptas[idMat].secciones.length - 1 && idMat == 0) {
                 //llegamos a la ultima interacion
                 //Desactivar aviso "procesando"
-                if(numHor == 1){
+                if (numHor == 1) {
                     //aviso de combinacciones no posibles
-                    document.getElementById('horarios').innerHTML = 
-                    `<div class="alert alert-warning" role="alert">
+                    document.getElementById(
+                        "horarios"
+                    ).innerHTML = `<div class="alert alert-warning" role="alert">
                         ¡No se encontraron combinaciones posibles!  <i class="far fa-sad-tear"></i> <br> Una materia debe estar ocasionando el problema
                     </div>`;
                     hideSnack();
@@ -198,16 +210,17 @@ function horario(idMat, idSeccion, horarioT) {
 function run() {
     numHor = 1;
     //matInscriptasBorrador = matInscriptas;
-    document.getElementById("horarios").innerHTML = '';
+    document.getElementById("horarios").innerHTML = "";
 
-    initColors(); 
-    matInscriptas = matInscriptasBorrador.filter(Boolean);
+    initColors();
+    //matInscriptas = matInscriptasBorrador.filter(Boolean);
     //console.log("run", horarioGen);
-   msgSnack(`<div class="spinner-border spinner-border-sm text-light" role="status">
+    msgSnack(`<div class="spinner-border spinner-border-sm text-light" role="status">
                 <span class="sr-only">Loading...</span>
             </div> Generando!`);
-    setTimeout(()=>{horario(0, 0, horarioGen);}, 250);
-    
+    setTimeout(() => {
+        horario(0, 0, horarioGen);
+    }, 250);
 }
 
 function fillHorarioTemplate(horario) {
@@ -216,60 +229,62 @@ function fillHorarioTemplate(horario) {
     horario.forEach((dia, diaId) => {
         for (let hora in dia) {
             if (dia.hasOwnProperty(hora)) {
-                let cell =  document.getElementsByClassName(getClassDay(diaId, hora))[indHorario];
+                let cell = document.getElementsByClassName(getClassDay(diaId, hora))[indHorario];
                 cell.innerText = getDataCell(dia[hora][0], dia[hora][1]);
-                cell.style.backgroundColor = getColorBack(dia[hora][0]); 
+                cell.style.backgroundColor = getColorBack(dia[hora][0]);
             }
         }
-    })
+    });
 }
 
 function getClassDay(did, hid) {
     let dayBase = "";
     switch (did) {
         case 0:
-            dayBase = 'l'
+            dayBase = "l";
             break;
         case 1:
-            dayBase = 'm'
+            dayBase = "m";
             break;
         case 2:
-            dayBase = 'mm'
+            dayBase = "mm";
             break;
         case 3:
-            dayBase = 'j'
+            dayBase = "j";
             break;
         case 4:
-            dayBase = 'v'
+            dayBase = "v";
             break;
         case 5:
-            dayBase = 's'
+            dayBase = "s";
             break;
     }
 
     return `${dayBase}${hid}`;
 }
 
-function getDataCell(matId, secId){
-    //matInscriptasBorrados USAR
-    let matData = matInscriptasBorrador[matId];
+function getDataCell(matId, secId) {
+    //matInscriptasBorrados USAR EN PRODUCCION
+    //EN DEBUG matInscriptas
+    //let matData = matInscriptasBorrador[matId];
+    let matData = matInscriptas[matId];
     return `Alias: ${matData.nrc[secId]} 
                 ${matData.materia}`;
 }
 
 let arrColor = [];
 let i = 1;
-function initColors(){
+function initColors() {
     arrColor = [];
     numHor = 1;
     i = 1;
 }
 
-function getColorBack(matId){
-    if(!arrColor[matId]){
+function getColorBack(matId) {
+    if (!arrColor[matId]) {
         //mat NO tiene color asig
         arrColor[matId] = `var(--c${i})`;
-        i++; 
+        i++;
     }
     return arrColor[matId];
 }
