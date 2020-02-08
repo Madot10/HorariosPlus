@@ -6,9 +6,9 @@ let matInscriptas = [
         nrc: ["1", "2222"],
         secciones: [
             //Seccion1 (0)-  datos seccion [mat, secc] - l m mi j v s
-            [[], { 7: [0, 0], 8: [0, 0] }, {}, { 10: [0, 0], 11: [0, 0] }, { 15: [0, 0] }, {}, {}],
+            [{ 7: [0, 0], 8: [0, 0] }, {}, { 10: [0, 0], 11: [0, 0] }, { 15: [0, 0] }, {}, {}],
             //Seccion 2 (1)
-            [[], { 9: [0, 1], 10: [0, 1] }, {}, { 9: [0, 1], 10: [0, 1] }, {}, { 10: [0, 1] }, {}],
+            [{ 9: [0, 1], 10: [0, 1] }, {}, { 9: [0, 1], 10: [0, 1] }, {}, { 10: [0, 1] }, {}],
         ],
     },
 
@@ -17,8 +17,8 @@ let matInscriptas = [
         materia: "Matemática Básica",
         nrc: ["20", "21"],
         secciones: [
-            [[], { 12: [1, 0], 13: [1, 0] }, {}, {}, { 13: [1, 0], 14: [1, 0] }, {}, {}],
-            [[], {}, { 10: [1, 1], 11: [1, 1] }, {}, {}, { 9: [1, 1], 10: [1, 1] }, {}],
+            [{ 12: [1, 0], 13: [1, 0] }, {}, {}, { 13: [1, 0], 14: [1, 0] }, {}, {}],
+            [{}, { 10: [1, 1], 11: [1, 1] }, {}, {}, { 9: [1, 1], 10: [1, 1] }, {}],
         ],
     },
 
@@ -28,7 +28,7 @@ let matInscriptas = [
         nrc: ["3"],
         secciones: [
             // l m m j v s
-            [[], {}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}],
+            [{}, {}, {}, { 8: [2, 0], 9: [2, 0] }, {}, {}],
         ],
     },
     //3
@@ -37,7 +37,7 @@ let matInscriptas = [
         nrc: ["4"],
         secciones: [
             // l m m j v s
-            [[], { 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}],
+            [{ 21: [2, 0], 19: [2, 0] }, {}, {}, { 21: [2, 0], 19: [2, 0] }, {}, {}],
         ],
     },
     //4
@@ -47,7 +47,6 @@ let matInscriptas = [
         secciones: [
             // l m m j v s
             [
-                [],
                 { 20: [2, 0], 18: [2, 0] },
                 {},
                 {},
@@ -93,12 +92,12 @@ let horarioGen = [
 function addSeccion(seccion, horTemp) {
     if (seccion /*&& canAddSeccion(seccion, horTemp)*/) {
         let horAux = JSON.parse(JSON.stringify(horTemp));
-        for (let d = 1; d <= 6; d++) {
+        for (let d = 0; d < 6; d++) {
             //Cuando hay clases ese dia => Copiamos
             if (Object.keys(seccion[d]).length > 0) {
                 //Object.assign(horTemp[d-1], seccion[d]);
                 //Hacemos copia
-                Object.assign(horAux[d - 1], seccion[d]);
+                Object.assign(horAux[d], seccion[d]);
             }
         }
         return horAux;
@@ -109,13 +108,13 @@ function addSeccion(seccion, horTemp) {
 function canAddSeccion(seccion, horTemp) {
     if (seccion) {
         //Existe'()
-        for (let d = 1; d <= 6; d++) {
+        for (let d = 0; d < 6; d++) {
             //Mientras halla alguna clase ese dia, se recorre las horas para ver colisiones
             if (Object.keys(seccion[d]).length > 0) {
                 for (let i = 7; i <= 21; i++) {
                     if (seccion[d][i]) {
                         //Hay algo a esa hora => chequemos en horario tmp
-                        if (horTemp[d - 1][i]) {
+                        if (horTemp[d][i]) {
                             //Chocamos
                             //console.log("Chocamos dia: y hora: ", d, i);
                             //console.log(seccion, horTemp);
@@ -213,7 +212,7 @@ function run() {
     document.getElementById("horarios").innerHTML = "";
 
     initColors();
-    //matInscriptas = matInscriptasBorrador.filter(Boolean);
+    matInscriptas = matInscriptasBorrador.filter(Boolean);
     //console.log("run", horarioGen);
     msgSnack(`<div class="spinner-border spinner-border-sm text-light" role="status">
                 <span class="sr-only">Loading...</span>
@@ -266,8 +265,8 @@ function getClassDay(did, hid) {
 function getDataCell(matId, secId) {
     //matInscriptasBorrados USAR EN PRODUCCION
     //EN DEBUG matInscriptas
-    //let matData = matInscriptasBorrador[matId];
-    let matData = matInscriptas[matId];
+    let matData = matInscriptasBorrador[matId];
+    //let matData = matInscriptas[matId];
     return `Alias: ${matData.nrc[secId]} 
                 ${matData.materia}`;
 }

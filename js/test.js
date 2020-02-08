@@ -2,8 +2,8 @@ var carrera = "";
 var numHor = 1;
 
 function inicializar() {
-    document.getElementById("materias").innerHTML = '';
-    document.getElementById("horarios").innerHTML = '';
+    document.getElementById("materias").innerHTML = "";
+    document.getElementById("horarios").innerHTML = "";
     matInscriptasBorrador = [];
     idMatActual = null;
     arrColor = [];
@@ -12,12 +12,12 @@ function inicializar() {
 }
 
 function GetJsonDataMaterias(tx) {
-    tx = tx.replace(/\s/g, '');
-    tx = tx.replace(/\n/g, '');
+    tx = tx.replace(/\s/g, "");
+    tx = tx.replace(/\n/g, "");
     tx = tx.toLowerCase();
 
     //console.log("TX " + tx);
-    return tx = window[tx];
+    return (tx = window[tx]);
 }
 
 /* MATERIA MODAL */
@@ -29,7 +29,6 @@ function toggleActiveChbox(elem) {
 
 /* SISTEMA DE MATERIAS */
 function toggleList(elem) {
-
     elem.classList.toggle("active");
     var content = elem.nextElementSibling;
 
@@ -38,8 +37,6 @@ function toggleList(elem) {
     } else {
         content.style.display = "block";
     }
-
-
 }
 
 function desCheckMatList(id) {
@@ -53,7 +50,7 @@ function desCheckMatList(id) {
     toggleActiveChbox(elem);
 }
 
-function deleteMateria(idMat){
+function deleteMateria(idMat) {
     //matInscriptasBorrador.splice(idMat, 1);
     matInscriptasBorrador[idMat] = null;
 }
@@ -63,22 +60,21 @@ function carreraSelect(elem) {
     inicializar();
 
     //limpiamos texto
-    let content = elem.textContent.replace(/\n/g, '');
-    content = elem.textContent.replace(/[.]/g, '');
+    let content = elem.textContent.replace(/\n/g, "");
+    content = elem.textContent.replace(/[.]/g, "");
     content = content.trim();
     content = content.toUpperCase();
 
-    $('#carreraModal').modal('hide')
+    $("#carreraModal").modal("hide");
     let span;
     //let parentElem;
-    OnClickGa('CarreraSelect', 'Hplus', content);
+    OnClickGa("CarreraSelect", "Hplus", content);
 
     span = document.getElementById("btn-car");
     //parentElem = span.parentElement;
 
-
     //guardamos
-    carrera = content.replace(/\s/g, '').toLowerCase();
+    carrera = content.replace(/\s/g, "").toLowerCase();
 
     //Ocultamos flecha
     //parentElem.children[2].style.display = 'none';
@@ -89,18 +85,17 @@ function carreraSelect(elem) {
     //mostramos nombre de carrera en boton exterior
     span.innerHTML = content;
 
-    //limpiamos tabla de materias 
+    //limpiamos tabla de materias
     // document.getElementsByClassName('materias')[0].innerHTML = '';
     // ucbase = 0;
     // uctotal = 0;
-
 
     genMateriaList();
 }
 
 function genMateriaList() {
     let main = document.getElementById("matList");
-    main.innerHTML = '';
+    main.innerHTML = "";
     let divBtn;
     let divCont;
 
@@ -135,10 +130,10 @@ function genMateriaList() {
 
         //if(mode == "UC"){
         //Creamos materia
-        let div = document.createElement('div');
+        let div = document.createElement("div");
         div.setAttribute("class", "divMat");
 
-        let inp = document.createElement('input');
+        let inp = document.createElement("input");
         inp.setAttribute("id", i);
         inp.setAttribute("type", "checkbox");
         inp.setAttribute("class", "chbox");
@@ -163,23 +158,23 @@ function genMateriaList() {
 
 function insertMatPracticas() {
     for (let i = 10; i > 0; i--) {
-        let prac = {}
+        let prac = {};
         prac.Semestre = "PRACTICAS/LABORATORIOS";
         prac.Asignatura = `PRACTICA/LABORATORIO ${i}`;
         prac.UC = 0;
         prac.Tax = "TA-9";
 
-        materias.unshift(prac)
+        materias.unshift(prac);
     }
 
     for (let i = 10; i > 0; i--) {
-        let prac = {}
+        let prac = {};
         prac.Semestre = "OTROS";
         prac.Asignatura = `OTRO ${i}`;
         prac.UC = 0;
         prac.Tax = "TA-9";
 
-        materias.unshift(prac)
+        materias.unshift(prac);
     }
 }
 
@@ -237,7 +232,7 @@ function modalSeccion(idMat) {
     //console.log("idMateria: ", idMat);
     idMatActual = idMat;
 
-    $('#seccionModal').modal('show');
+    $("#seccionModal").modal("show");
 }
 
 function guardarSeccion() {
@@ -262,12 +257,11 @@ function guardarSeccion() {
         }
 
         insertSecCard(idMatActual, codNRC);
-        $('#seccionModal').modal('hide');
+        $("#seccionModal").modal("hide");
         //console.log("Guarda Seccion!");
     } else {
         alert("Debe introducir un NRC o Alias!");
     }
-
 }
 
 function insertSecCard(idMat, nrc) {
@@ -280,7 +274,7 @@ function insertSecCard(idMat, nrc) {
 function isMatSaved(matName) {
     matInscriptasBorrador.forEach((mat, i) => {
         if (matName == mat.materia) {
-            //Retornamos => Index 
+            //Retornamos => Index
             return i;
         }
     });
@@ -288,7 +282,7 @@ function isMatSaved(matName) {
 }
 
 function genArrSeccion() {
-    let sec = [[]];
+    let sec = [];
     let hours = document.getElementsByClassName("check-time");
 
     let idayAnt = 0;
@@ -302,8 +296,8 @@ function genArrSeccion() {
     Array.from(hours).forEach((check, i) => {
         let idayActual = Math.floor(i / 15);
 
-        //hay Cambio de dia o llegamos al ultimo* 
-        if ((idayAnt != idayActual)) {
+        //hay Cambio de dia o llegamos al ultimo*
+        if (idayAnt != idayActual) {
             idayAnt = idayActual;
 
             sec.push(objDay); //Guardamos dia
@@ -312,14 +306,14 @@ function genArrSeccion() {
 
         //Hay clase
         if (check.checked) {
-            objDay[(i % 15) + 7] = [idMatActual, idSeccion]
+            objDay[(i % 15) + 7] = [idMatActual, idSeccion];
         }
 
         //Ultimo guardamos
         if (i == 89) {
             sec.push(objDay); //Guardamos dia
         }
-    })
+    });
 
     //console.log("Seccion gen: ", sec);
     return sec;
@@ -329,23 +323,19 @@ function deleteSeccion(idMat, nrc) {
     let idSec = matInscriptasBorrador[idMat].nrc.indexOf(`${nrc}`);
 
     //Revisamo si solo hay una seccion => Eliminar toda materia
-    if( matInscriptasBorrador[idMat].secciones.length == 1){
+    if (matInscriptasBorrador[idMat].secciones.length == 1) {
         desCheckMatList(idMat);
-    }else{
+    } else {
         //Eliminar seccion
         matInscriptasBorrador[idMat].secciones.splice(idSec, 1);
         //Eliminar NRC de registro
         // matInscriptasBorrador[idMat].nrc.splice(idSec, 1);
 
-         //Delete html card
+        //Delete html card
         //console.log(` Deleting ${idMat}-${nrc}`);
         let elem = document.getElementById(`${idMat}-${nrc}`);
         elem.parentNode.removeChild(elem);
     }
-   
-
-   
-
 }
 
 function clearModalSeccion() {
@@ -355,12 +345,12 @@ function clearModalSeccion() {
     let hours = document.getElementsByClassName("check-time");
     Array.from(hours).forEach(elem => {
         elem.checked = false;
-    })
+    });
 
     let buttons = document.getElementsByClassName("checker");
     Array.from(buttons).forEach(elem => {
         elem.classList.remove("active");
-    })
+    });
 }
 
 //Checking
@@ -374,7 +364,6 @@ function checkTime(elemBtn) {
         //=> Activar
         elemBtn.childNodes[1].checked = true;
     }
-
 }
 
 function toggleUI(state) {
@@ -389,30 +378,30 @@ function toggleUI(state) {
 }
 
 function savePDF(id) {
-    OnClickGa('DownloadPDF', 'Hplus', id);
-   const doc = new jsPDF();
-   doc.autoTable({
-       html: document.getElementById(id),
-       theme: 'striped'
+    OnClickGa("DownloadPDF", "Hplus", id);
+    const doc = new jsPDF();
+    doc.autoTable({
+        html: document.getElementById(id),
+        theme: "striped",
     });
-   doc.save('Horario ' + id + '.pdf');
+    doc.save("Horario " + id + ".pdf");
 }
 
-function saveIMG(id){
+function saveIMG(id) {
     toggleOverflow(true);
 
     html2canvas(document.getElementById(id)) // Llamar a html2canvas y pasarle el elemento
-    .then(canvas2 => {
-        toggleOverflow(false);
-      // Cuando se resuelva la promesa traerá el canvas
-      // Crear un elemento <a>
-      let enlace = document.createElement('a');
-      enlace.download = "Horarios.png";
-      // Convertir la imagen a Base64
-      enlace.href = canvas2.toDataURL();
-      // Hacer click en él
-      enlace.click();
-    });
+        .then(canvas2 => {
+            toggleOverflow(false);
+            // Cuando se resuelva la promesa traerá el canvas
+            // Crear un elemento <a>
+            let enlace = document.createElement("a");
+            enlace.download = "Horarios.png";
+            // Convertir la imagen a Base64
+            enlace.href = canvas2.toDataURL();
+            // Hacer click en él
+            enlace.click();
+        });
 }
 
 function toggleOverflow(state) {
@@ -424,7 +413,5 @@ function toggleOverflow(state) {
         } else {
             table.style.overflow = "auto";
         }
-
-    })
-
+    });
 }
